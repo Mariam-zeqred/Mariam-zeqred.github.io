@@ -455,7 +455,7 @@ window.CONTENT = {
     text: "For supervision, collaboration or hiring questions, email is best.",
     email: "Mariamzeqred@gmail.com",
     github: "https://github.com/Mariam-zeqred",
-    // linkedin: "https://www.linkedin.com/in/…",   // add when known
+    linkedin: "https://www.linkedin.com/in/mariam-mohamed-mamdouh-lotfi-6b1a47271",
     location: "Mansoura, Egypt"
   },
 

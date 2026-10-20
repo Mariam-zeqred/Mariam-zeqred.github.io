@@ -1,0 +1,51 @@
+# mariam-zeqred.github.io
+
+Personal site of Mariam Loutfi, served by GitHub Pages from the `main` branch at
+https://mariam-zeqred.github.io. Plain HTML, CSS and JavaScript: no build step, nothing to install.
+
+## Layout
+
+| Path | What it is |
+|---|---|
+| `index.html` | The single-page site. It contains only empty sections; `js/main.js` fills them from the data file. |
+| `data/content.js` | **All text, projects, certificates, photos, links.** Edit this to change the site. |
+| `css/style.css` | Styling. Colours are CSS variables at the top (`--yellow`, `--blue`, …). |
+| `sim/incubator.html`, `js/sim-incubator.js` | Queen-bee incubator thermal simulation. |
+| `sim/poultry.html`, `js/sim-poultry.js` | Poultry-house climate-controller simulation. |
+| `sim/lora.html`, `js/sim-lora.js` | LoRa link-budget calculator. |
+| `assets/` | Original photos, certificate scans, screenshots and logos (see `assets/README.md`). Never referenced by the pages directly. |
+| `img/`, `img/thumb/` | Web-sized copies (≤ 1600 px and ≤ 640 px) generated from `assets/` by `scripts/make_images.py`. These are what the pages load. |
+| `404.html`, `favicon.svg`, `.nojekyll` | Not-found page, icon, and a marker that tells GitHub Pages not to run Jekyll. |
+
+## Editing text
+
+Open `data/content.js`. Every section of the page is a key of the `CONTENT` object (`hero`, `about`,
+`projects`, `certifications`, …). Change a string, save, commit, push; the site updates within a minute.
+
+## Adding a certificate
+
+1. Put the scan in `assets/certificates/`, for example `assets/certificates/new-horizons-python-2022.jpg`.
+2. Run `python3 scripts/make_images.py` (needs Pillow: `pip install pillow`). It writes
+   `img/new-horizons-python-2022.jpg` and `img/thumb/new-horizons-python-2022.jpg`.
+3. In `data/content.js`, find the entry under `certifications.items` and set
+   `image: "new-horizons-python-2022"` (the file name without extension). For a new certificate copy
+   an existing entry. `verify` is optional.
+4. Commit `assets/`, `img/` and `data/content.js` together.
+
+The same steps apply to a photo for the teaching strip (`teaching.photos`) or a project (`image`, `gallery`).
+
+## Adding a project
+
+Add an entry to `projects.items` in `data/content.js`. `publicFrom` is an ISO date (`"2026-11-02"`);
+the card stays hidden until that day, checked in the visitor's browser, so a repository that is still
+private is never linked. Set it to a past date for a public repository.
+
+## Adding a language later
+
+Every string lives in `data/content.js`, so an Arabic version means a second object with the same keys
+(for example `window.CONTENT_AR`) and a switch in `js/main.js` that picks one.
+
+## Checking locally
+
+Any static server works, for example `python3 -m http.server 8000` in the repository root, then open
+http://localhost:8000.

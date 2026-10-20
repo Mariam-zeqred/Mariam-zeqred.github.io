@@ -43,10 +43,51 @@
   function ext(href, label, cls) {
     return el("a", { href: href, target: "_blank", rel: "noopener", class: cls || "", text: label });
   }
+  // Live repository data (data/repos.js, refreshed daily by scripts/sync_repos.py).
+  var REPOS = window.REPOS || null;
+  function repoName(item) {
+    var m = /github\.com\/[^\/]+\/([^\/#?]+)/.exec(item.repo || "");
+    return item.name || (m && m[1]);
+  }
   function isPublic(item) {
-    if (!item.publicFrom) return true;
+    if (REPOS) return !!REPOS[repoName(item)];           // what GitHub actually shows
+    if (!item.publicFrom) return true;                   // fallback: the scheduled date
     var d = new Date(item.publicFrom + "T00:00:00");
     return !isNaN(d) && d <= new Date();
+  }
+  function niceDate(iso) {
+    var d = new Date(iso + "T00:00:00");
+    return isNaN(d) ? iso : d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  }
+  function titleCaseTopic(t) {
+    var map = { esp32: "ESP32", iot: "IoT", freertos: "FreeRTOS", aws: "AWS", mqtt: "MQTT", lora: "LoRa", lorawan: "LoRaWAN", tinyml: "TinyML", ml: "ML", rtos: "RTOS", api: "API", sql: "SQL", sqlite: "SQLite", cdk: "CDK", cv: "CV", ai: "AI" };
+    return t.split("-").map(function (w) { return map[w] || w.charAt(0).toUpperCase() + w.slice(1); }).join(" ");
+  }
+  function mergeLive(item) {
+    var live = REPOS && REPOS[repoName(item)];
+    if (!live) return item;
+    var p = Object.assign({}, item);
+    var placeholder = !p.summary || p.summary.length === 0 || (p.summary.length === 1 && p.summary[0].length < 140);
+    if (placeholder && live.intro) p.summary = [live.intro];
+    else if (placeholder && live.description) p.summary = [live.description];
+    var tags = (p.tags || []).slice();
+    (live.topics || []).forEach(function (t) { var n = titleCaseTopic(t); if (tags.map(function (x) { return x.toLowerCase(); }).indexOf(n.toLowerCase()) < 0 && tags.length < 9) tags.push(n); });
+    p.tags = tags;
+    var meta = [];
+    if (live.chapters) meta.push(live.chapters + (live.chapters === 1 ? " chapter" : " chapters") + " so far");
+    if (live.language) meta.push(live.language);
+    if (live.pushedAt) meta.push("updated " + niceDate(live.pushedAt));
+    p.meta = meta.join(" · ");
+    return p;
+  }
+  function autoCards(items) {
+    if (!REPOS) return [];
+    var known = {}; items.forEach(function (i) { known[repoName(i)] = true; });
+    return Object.keys(REPOS).filter(function (n) { return !known[n]; }).map(function (n) {
+      var live = REPOS[n];
+      return { name: n, title: n.replace(/-/g, " ").replace(/\w/g, function (c) { return c.toUpperCase(); }), repo: live.url,
+               art: (live.chapters ? "handbook" : "repo"), summary: [live.intro || live.description || ""], tags: [], _auto: true };
+    });
   }
 
   // ---------- lightbox ----------
@@ -130,13 +171,13 @@
 
   // ---------- projects ----------
   var P = C.projects;
-  var visible = P.items.filter(isPublic);
-  var hiddenCount = P.items.length - visible.length;
+  var visible = P.items.filter(isPublic).concat(autoCards(P.items)).map(mergeLive);
+  var hiddenCount = P.items.length - P.items.filter(isPublic).length;
   function projectCard(p, i) {
     var wide = i < 2 && p.gallery || (i === 0);
     var body = [
       el("h3", null, [ext(p.repo, p.title)]),
-      el("p", { class: "small muted", text: p.name })
+      el("p", { class: "small muted", text: p.name + (p.meta ? " · " + p.meta : "") })
     ];
     (p.summary || []).forEach(function (s) { body.push(el("p", { text: s })); });
     if (p.gallery) {
@@ -152,6 +193,7 @@
   var projWrap = el("div", { class: "wrap" }, [head(P.heading), el("p", { class: "intro", text: P.intro })]);
   projWrap.appendChild(el("div", { class: "cards" }, visible.map(projectCard)));
   if (hiddenCount > 0) projWrap.appendChild(el("p", { class: "small muted", style: "margin-top:14px", text: P.hiddenNote + " (" + hiddenCount + " scheduled)" }));
+  if (window.REPOS_UPDATED) projWrap.appendChild(el("p", { class: "small muted", text: "Project list synchronised with GitHub on " + niceDate(window.REPOS_UPDATED) + "." }));
   document.getElementById("projects").appendChild(projWrap);
 
   // ---------- simulations ----------

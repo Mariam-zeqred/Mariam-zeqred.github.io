@@ -74,7 +74,7 @@ window.CONTENT = {
 
   projects: {
     heading: "Projects",
-    intro: "Real product work, described from the public repositories. More repositories are published on a schedule and appear here automatically on their date.",
+    intro: "Real product work, described from the public repositories. More repositories are published one at a time; this list is synchronised with GitHub every day, so a repository appears here the day it becomes public.",
     hiddenNote: "More repositories are scheduled to become public over the coming weeks.",
     items: [
       {
@@ -138,7 +138,7 @@ window.CONTENT = {
         title: "Incubator telemetry analysis",
         repo: "https://github.com/Mariam-zeqred/incubator-telemetry-analysis",
         image: "telemetry-timeline.png", imageAlt: "Chamber, ambient and setpoint over one day of real incubator telemetry, heater-on periods shaded",
-        publicFrom: "2026-10-19",
+        publicFrom: "2026-10-20",
         summary: ["Analysis of real incubator telemetry: thermal model fit and anomaly detectors."],
         tags: ["Python", "Data analysis", "Anomaly detection"],
         simulation: { label: "Thermal simulation", href: "sim/incubator.html" }
@@ -148,7 +148,7 @@ window.CONTENT = {
         title: "IoT system design handbook",
         repo: "https://github.com/Mariam-zeqred/iot-system-design-handbook",
         art: "handbook",
-        publicFrom: "2026-10-19",
+        publicFrom: "2026-10-21",
         summary: ["Course in ten chapters on designing IoT systems."],
         tags: ["Course", "IoT"]
       },
@@ -157,7 +157,7 @@ window.CONTENT = {
         title: "ESP32 MQTT sensor node",
         repo: "https://github.com/Mariam-zeqred/esp32-mqtt-sensor-node",
         art: "esp32",
-        publicFrom: "2026-10-26",
+        publicFrom: "2026-10-22",
         summary: ["An ESP32 sensor node publishing readings over MQTT."],
         tags: ["ESP32", "MQTT"]
       },
@@ -166,7 +166,7 @@ window.CONTENT = {
         title: "FreeRTOS patterns on ESP32",
         repo: "https://github.com/Mariam-zeqred/freertos-esp32-patterns",
         art: "rtos",
-        publicFrom: "2026-10-26",
+        publicFrom: "2026-10-23",
         summary: ["FreeRTOS task and queue patterns on the ESP32."],
         tags: ["ESP32", "FreeRTOS", "C"]
       },
@@ -175,7 +175,7 @@ window.CONTENT = {
         title: "Job-recommender chatbot",
         repo: "https://github.com/Mariam-zeqred/job-recommender-chatbot",
         art: "chatbot",
-        publicFrom: "2026-11-02",
+        publicFrom: "2026-10-26",
         summary: ["A chatbot that recommends jobs."],
         tags: ["Python", "Machine learning"]
       },
@@ -184,7 +184,7 @@ window.CONTENT = {
         title: "Poultry vision counting",
         repo: "https://github.com/Mariam-zeqred/poultry-vision-counting",
         art: "poultry-vision",
-        publicFrom: "2026-11-02",
+        publicFrom: "2026-10-25",
         summary: ["Counting birds in a poultry house from camera images."],
         tags: ["Computer vision", "Python"]
       },
@@ -193,7 +193,7 @@ window.CONTENT = {
         title: "Computer vision fundamentals",
         repo: "https://github.com/Mariam-zeqred/computer-vision-fundamentals",
         art: "cv",
-        publicFrom: "2026-11-02",
+        publicFrom: "2026-10-24",
         summary: ["Course on the fundamentals of computer vision."],
         tags: ["Course", "Computer vision"]
       },
@@ -202,7 +202,7 @@ window.CONTENT = {
         title: "AWS IoT telemetry pipeline",
         repo: "https://github.com/Mariam-zeqred/aws-iot-telemetry-pipeline",
         art: "aws-pipeline",
-        publicFrom: "2026-11-09",
+        publicFrom: "2026-10-29",
         summary: ["An IoT telemetry pipeline on AWS, defined with the AWS CDK."],
         tags: ["AWS", "CDK", "IoT"]
       },
@@ -211,7 +211,7 @@ window.CONTENT = {
         title: "TinyML anomaly detection on ESP32",
         repo: "https://github.com/Mariam-zeqred/tinyml-esp32-anomaly",
         art: "tinyml",
-        publicFrom: "2026-11-09",
+        publicFrom: "2026-10-28",
         summary: ["Anomaly detection running on the ESP32 itself."],
         tags: ["TinyML", "ESP32"]
       },
@@ -220,7 +220,7 @@ window.CONTENT = {
         title: "AWS architecture by example",
         repo: "https://github.com/Mariam-zeqred/aws-architecture-by-example",
         art: "aws-arch",
-        publicFrom: "2026-11-09",
+        publicFrom: "2026-10-27",
         summary: ["Course on AWS architecture, built from worked examples."],
         tags: ["Course", "AWS"]
       },
@@ -229,7 +229,7 @@ window.CONTENT = {
         title: "LoRa link budget",
         repo: "https://github.com/Mariam-zeqred/lora-link-budget",
         art: "lora",
-        publicFrom: "2026-11-16",
+        publicFrom: "2026-10-30",
         summary: ["Link-budget and range estimation for LoRa links."],
         tags: ["LoRa", "RF"],
         simulation: { label: "Link-budget calculator", href: "sim/lora.html" }
@@ -239,7 +239,7 @@ window.CONTENT = {
         title: "Wi-Fi RSSI localisation",
         repo: "https://github.com/Mariam-zeqred/wifi-rssi-localization",
         art: "wifi",
-        publicFrom: "2026-11-16",
+        publicFrom: "2026-10-31",
         summary: ["Indoor localisation from Wi-Fi signal strength."],
         tags: ["Wi-Fi", "Localisation"]
       },
@@ -248,7 +248,7 @@ window.CONTENT = {
         title: "Incubator thermal-control simulation",
         repo: "https://github.com/Mariam-zeqred/incubator-thermal-control-sim",
         image: "thermal-sim-cold-start.png", imageAlt: "Four heater controllers compared on the fitted plant during a cold start",
-        publicFrom: "2026-11-23",
+        publicFrom: "2026-11-01",
         summary: ["Simulation of the incubator's heating with fitted thermal models and a comparison of heater controllers."],
         tags: ["Python", "Control", "Simulation"],
         simulation: { label: "Thermal simulation", href: "sim/incubator.html" }

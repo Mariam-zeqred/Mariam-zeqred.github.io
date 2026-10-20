@@ -47,3 +47,8 @@ lotus-power.png - Lotus Power logo ("Building electrified systems"), her employe
 
 ## Contact links (supplied 2026-10-20)
 - LinkedIn: https://www.linkedin.com/in/mariam-mohamed-mamdouh-lotfi-6b1a47271
+
+## figures/
+Result figures copied from Mariam's analysis repositories (regenerated there by `make check`):
+- telemetry-timeline.png: chamber, ambient and setpoint over the day of 3 Oct 2026, heater-on periods shaded (incubator-telemetry-analysis, figures/01_timeline.png)
+- thermal-sim-cold-start.png: four controllers on the fitted heater-lag plant, cold start (incubator-thermal-control-sim, figures/01_cold_start.png)

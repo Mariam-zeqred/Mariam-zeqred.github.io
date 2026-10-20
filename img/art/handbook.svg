@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="handbook illustration">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3C4"/><stop offset="1" stop-color="#E3F2FA"/></linearGradient>
+</defs>
+<rect width="800" height="500" fill="url(#sky)"/>
+<circle cx="660" cy="110" r="70" fill="#FFC93C"/>
+<circle cx="660" cy="110" r="92" fill="none" stroke="#F9B233" stroke-width="3" stroke-dasharray="10 14" opacity=".6"/>
+<path d="M0 400 C 140 360, 260 440, 400 400 S 660 360, 800 400 V500 H0Z" fill="#2E9CCA" opacity=".35"/>
+<path d="M0 430 C 160 400, 240 470, 400 440 S 640 400, 800 440 V500 H0Z" fill="#1B6CA8" opacity=".45"/>
+
+<path d="M160 180 Q270 150 390 190 V380 Q270 340 160 370 Z" fill="#FFFFFF" stroke="#0B3D91" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M620 180 Q510 150 390 190 V380 Q510 340 620 370 Z" fill="#FFFFFF" stroke="#0B3D91" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M200 230 H340 M200 270 H340 M200 310 H320" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+<rect x="430" y="250" width="50" height="40" rx="8" fill="#FFC93C" stroke="#0B3D91" stroke-width="6"/>
+<path d="M480 270 H520" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M530 290 a25 25 0 0 1 10 -48 a30 30 0 0 1 56 8 a22 22 0 0 1 -6 40 z" fill="#2E9CCA" stroke="#0B3D91" stroke-width="6"/>
+</svg>

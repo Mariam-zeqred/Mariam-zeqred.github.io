@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="wifi illustration">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3C4"/><stop offset="1" stop-color="#E3F2FA"/></linearGradient>
+</defs>
+<rect width="800" height="500" fill="url(#sky)"/>
+<circle cx="660" cy="110" r="70" fill="#FFC93C"/>
+<circle cx="660" cy="110" r="92" fill="none" stroke="#F9B233" stroke-width="3" stroke-dasharray="10 14" opacity=".6"/>
+<path d="M0 400 C 140 360, 260 440, 400 400 S 660 360, 800 400 V500 H0Z" fill="#2E9CCA" opacity=".35"/>
+<path d="M0 430 C 160 400, 240 470, 400 440 S 640 400, 800 440 V500 H0Z" fill="#1B6CA8" opacity=".45"/>
+
+<path d="M400 360 m-14 0 a14 14 0 1 0 28 0 a14 14 0 1 0 -28 0" fill="#0B3D91"/>
+<path d="M330 300 a100 100 0 0 1 140 0" fill="none" stroke="#0B3D91" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M280 250 a170 170 0 0 1 240 0" fill="none" stroke="#0B3D91" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity=".75"/><path d="M230 200 a240 240 0 0 1 340 0" fill="none" stroke="#0B3D91" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+<path d="M560 330 c0 -40 -30 -60 -30 -60 c-30 0 -30 20 -30 60 l30 50 z" fill="#FFC93C" stroke="#0B3D91" stroke-width="8" stroke-linejoin="round"/><circle cx="530" cy="300" r="10" fill="#0B3D91"/>
+</svg>

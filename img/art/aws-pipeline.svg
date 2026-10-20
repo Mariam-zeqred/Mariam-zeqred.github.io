@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="aws-pipeline illustration">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3C4"/><stop offset="1" stop-color="#E3F2FA"/></linearGradient>
+</defs>
+<rect width="800" height="500" fill="url(#sky)"/>
+<circle cx="660" cy="110" r="70" fill="#FFC93C"/>
+<circle cx="660" cy="110" r="92" fill="none" stroke="#F9B233" stroke-width="3" stroke-dasharray="10 14" opacity=".6"/>
+<path d="M0 400 C 140 360, 260 440, 400 400 S 660 360, 800 400 V500 H0Z" fill="#2E9CCA" opacity=".35"/>
+<path d="M0 430 C 160 400, 240 470, 400 440 S 640 400, 800 440 V500 H0Z" fill="#1B6CA8" opacity=".45"/>
+
+<rect x="130" y="240" width="90" height="70" rx="12" fill="#FFC93C" stroke="#0B3D91" stroke-width="8"/>
+<path d="M220 275 H290" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M275 262 L292 275 L275 288" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="300" y="240" width="90" height="70" rx="12" fill="#FFFFFF" stroke="#0B3D91" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M390 275 H460" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M445 262 L462 275 L445 288" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M480 330 a40 40 0 0 1 10 -78 a52 52 0 0 1 100 10 a36 36 0 0 1 -8 68 z" fill="#FFFFFF" stroke="#0B3D91" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M525 330 V380 M525 380 H640" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<g stroke-width="18" stroke-linecap="round"><path d="M640 380 V340" stroke="#1B6CA8"/><path d="M670 380 V320" stroke="#F9B233"/><path d="M700 380 V350" stroke="#2E9CCA"/></g>
+</svg>

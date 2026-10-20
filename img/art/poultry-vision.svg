@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="poultry-vision illustration">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3C4"/><stop offset="1" stop-color="#E3F2FA"/></linearGradient>
+</defs>
+<rect width="800" height="500" fill="url(#sky)"/>
+<circle cx="660" cy="110" r="70" fill="#FFC93C"/>
+<circle cx="660" cy="110" r="92" fill="none" stroke="#F9B233" stroke-width="3" stroke-dasharray="10 14" opacity=".6"/>
+<path d="M0 400 C 140 360, 260 440, 400 400 S 660 360, 800 400 V500 H0Z" fill="#2E9CCA" opacity=".35"/>
+<path d="M0 430 C 160 400, 240 470, 400 440 S 640 400, 800 440 V500 H0Z" fill="#1B6CA8" opacity=".45"/>
+
+<rect x="150" y="150" width="200" height="120" rx="16" fill="#FFFFFF" stroke="#0B3D91" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><circle cx="250" cy="210" r="38" fill="#FFFFFF" stroke="#0B3D91" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><circle cx="250" cy="210" r="16" fill="#1B6CA8"/>
+<path d="M350 210 L450 260 M350 210 L450 330" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="14 12" opacity=".6"/>
+<g fill="#FFC93C" stroke="#0B3D91" stroke-width="7"><ellipse cx="500" cy="300" rx="42" ry="30"/><ellipse cx="600" cy="320" rx="42" ry="30"/><ellipse cx="560" cy="250" rx="42" ry="30"/></g>
+<g fill="#0B3D91"><circle cx="470" cy="290" r="5"/><circle cx="570" cy="310" r="5"/><circle cx="530" cy="240" r="5"/></g>
+<rect x="470" y="150" width="130" height="50" rx="12" fill="#0B3D91"/><text x="535" y="185" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#FFC93C">n = 3</text>
+</svg>

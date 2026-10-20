@@ -21,10 +21,18 @@
     });
     return e;
   }
+  function file(name) { return /\.[a-z0-9]+$/i.test(name) ? name : name + ".jpg"; } // bare names are JPEGs
   function img(name, alt, opts) {
     opts = opts || {};
-    var ext = /\.(png|svg)$/.test(name) ? "" : ".jpg";
-    return el("img", { src: (opts.full ? IMG : THUMB) + name + ext, alt: alt || "", loading: "lazy", decoding: "async" });
+    return el("img", { src: (opts.full ? IMG : THUMB) + file(name), alt: alt || "", loading: "lazy", decoding: "async" });
+  }
+  function art(name, alt) { // drawn illustration from img/art/<name>.svg
+    return el("img", { src: IMG + "art/" + name + ".svg", alt: alt || "", loading: "lazy", decoding: "async", class: "art" });
+  }
+  function media(item, cls) { // photo (with lightbox when cls given), illustration, or a themed placeholder
+    if (item.image) return el("div", { class: "card-img" }, [cls ? thumbButton(item.image, item.imageAlt || item.title, cls) : img(item.image, item.imageAlt || "")]);
+    if (item.art) return el("div", { class: "card-img" }, [art(item.art, item.imageAlt || "")]);
+    return el("div", { class: "card-img placeholder", "aria-hidden": "true", text: "{ }" });
   }
   function head(title) {
     return el("div", { class: "section-head" }, [el("h2", { text: title })]);
@@ -46,7 +54,7 @@
   var lbImg = document.getElementById("lightbox-img");
   var lbCap = document.getElementById("lightbox-cap");
   function openLightbox(name, caption) {
-    lbImg.src = IMG + name + ".jpg";
+    lbImg.src = IMG + file(name);
     lbImg.alt = caption || "";
     lbCap.textContent = caption || "";
     lb.classList.add("open");
@@ -97,7 +105,7 @@
       el("h1", { text: H.name }),
       el("p", { class: "title", text: H.title }),
       el("p", { class: "loc", text: H.location }),
-      el("ul", { class: "facts" }, H.facts.map(function (f) { return el("li", { text: f }); })),
+      el("ul", { class: "facts" }, H.facts.map(function (f, i) { return el("li", { class: i % 2 ? "blue" : "", text: f }); })),
       el("div", { class: "buttons" }, [
         el("a", { class: "btn btn-primary", href: H.primaryButton.href, text: H.primaryButton.label }),
         el("a", { class: "btn btn-accent", href: H.secondaryButton.href, text: H.secondaryButton.label })
@@ -139,10 +147,7 @@
     (p.links || []).forEach(function (l) { foot.push(ext(l.href, l.label, "btn btn-outline btn-sm")); });
     if (p.simulation) foot.push(el("a", { class: "btn btn-accent btn-sm", href: p.simulation.href, text: p.simulation.label }));
     body.push(el("div", { class: "card-foot" }, foot));
-    var media = p.image
-      ? el("div", { class: "card-img" }, [p.gallery ? thumbButton(p.image, p.imageAlt, "cert-thumb") : img(p.image, p.imageAlt)])
-      : el("div", { class: "card-img placeholder", "aria-hidden": "true", text: "{ }" });
-    return el("article", { class: "card project-card" + (wide ? " wide" : "") }, [media, el("div", { class: "card-body" }, body)]);
+    return el("article", { class: "card project-card reveal" + (wide ? " wide" : "") }, [media(p, p.gallery ? "cert-thumb" : null), el("div", { class: "card-body" }, body)]);
   }
   var projWrap = el("div", { class: "wrap" }, [head(P.heading), el("p", { class: "intro", text: P.intro })]);
   projWrap.appendChild(el("div", { class: "cards" }, visible.map(projectCard)));
@@ -154,8 +159,8 @@
   document.getElementById("simulations").appendChild(el("div", { class: "wrap" }, [
     head(S.heading), el("p", { class: "intro", text: S.intro }),
     el("div", { class: "cards three" }, S.items.map(function (s) {
-      return el("article", { class: "card" }, [
-        s.image ? el("div", { class: "card-img" }, [img(s.image, "")]) : el("div", { class: "card-img placeholder", "aria-hidden": "true", text: "((•))" }),
+      return el("article", { class: "card reveal" }, [
+        media(s),
         el("div", { class: "card-body" }, [
           el("h3", null, [el("a", { href: s.href, text: s.title })]),
           el("p", { text: s.text }),
@@ -226,7 +231,7 @@
     head(CE.heading), el("p", { class: "intro", text: CE.intro }),
     el("div", { class: "cert-grid" }, CE.items.map(function (c) {
       return el("div", { class: "cert" }, [
-        c.image ? thumbButton(c.image, c.title + " – " + c.issuer, "cert-thumb") : el("div", { class: "cert-thumb none", text: "Scan to be added" }),
+        c.image ? thumbButton(c.image, c.title + " – " + c.issuer, "cert-thumb") : (c.art ? el("div", { class: "cert-thumb none" }, [art(c.art, "Scan to be added")]) : el("div", { class: "cert-thumb none", text: "Scan to be added" })),
         el("div", { class: "cert-body" }, [
           el("strong", { text: c.title }),
           el("span", { text: c.issuer }),
@@ -269,6 +274,17 @@
       el("div", { class: "small", text: CO.location })
     ])
   ]));
+
+  // ---------- reveal on scroll ----------
+  document.querySelectorAll(".section-head, .pub, .timeline > li, .cert, .strip figure, .contact-box, .about-grid > *").forEach(function (n) { n.classList.add("reveal"); });
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if ("IntersectionObserver" in window && !reduce) {
+    var ro = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); ro.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal").forEach(function (n, i) { n.style.transitionDelay = (i % 6) * 60 + "ms"; ro.observe(n); });
+    setTimeout(function () { document.querySelectorAll(".reveal:not(.in)").forEach(function (n) { n.classList.add("in"); }); }, 2500); // safety net: never leave content hidden
+  } else document.querySelectorAll(".reveal").forEach(function (n) { n.classList.add("in"); });
 
   // ---------- footer ----------
   document.getElementById("footer").appendChild(el("div", { class: "wrap" }, [

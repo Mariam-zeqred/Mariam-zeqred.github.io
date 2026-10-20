@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="rtos illustration">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3C4"/><stop offset="1" stop-color="#E3F2FA"/></linearGradient>
+</defs>
+<rect width="800" height="500" fill="url(#sky)"/>
+<circle cx="660" cy="110" r="70" fill="#FFC93C"/>
+<circle cx="660" cy="110" r="92" fill="none" stroke="#F9B233" stroke-width="3" stroke-dasharray="10 14" opacity=".6"/>
+<path d="M0 400 C 140 360, 260 440, 400 400 S 660 360, 800 400 V500 H0Z" fill="#2E9CCA" opacity=".35"/>
+<path d="M0 430 C 160 400, 240 470, 400 440 S 640 400, 800 440 V500 H0Z" fill="#1B6CA8" opacity=".45"/>
+
+<rect x="180" y="150" width="440" height="220" rx="18" fill="#FFFFFF" stroke="#0B3D91" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<g stroke-width="22" stroke-linecap="round">
+<path d="M230 200 H330 M380 200 H420" stroke="#1B6CA8"/><path d="M230 250 H260 M300 250 H330 M370 250 H400 M440 250 H470 M510 250 H540" stroke="#F9B233"/>
+<path d="M230 300 H560" stroke="#2E9CCA"/><path d="M230 340 H280 M450 340 H500" stroke="#0B3D91"/></g>
+<circle cx="560" cy="210" r="30" fill="#FFC93C" stroke="#0B3D91" stroke-width="8"/><path d="M560 195 V212 L572 220" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

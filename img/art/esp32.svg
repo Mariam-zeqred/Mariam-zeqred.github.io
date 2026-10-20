@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="esp32 illustration">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3C4"/><stop offset="1" stop-color="#E3F2FA"/></linearGradient>
+</defs>
+<rect width="800" height="500" fill="url(#sky)"/>
+<circle cx="660" cy="110" r="70" fill="#FFC93C"/>
+<circle cx="660" cy="110" r="92" fill="none" stroke="#F9B233" stroke-width="3" stroke-dasharray="10 14" opacity=".6"/>
+<path d="M0 400 C 140 360, 260 440, 400 400 S 660 360, 800 400 V500 H0Z" fill="#2E9CCA" opacity=".35"/>
+<path d="M0 430 C 160 400, 240 470, 400 440 S 640 400, 800 440 V500 H0Z" fill="#1B6CA8" opacity=".45"/>
+
+<rect x="250" y="170" width="300" height="200" rx="18" fill="#FFFFFF" stroke="#0B3D91" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="330" y="220" width="140" height="100" rx="10" fill="#0B3D91"/>
+<text x="400" y="280" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#FFC93C">ESP32</text>
+<g fill="none" stroke="#0B3D91" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M250 200 H220 M250 240 H220 M250 280 H220 M250 320 H220 M550 200 H580 M550 240 H580 M550 280 H580 M550 320 H580"/></g>
+<path d="M200 150 a60 60 0 0 0 -60 -60" fill="none" stroke="#F9B233" stroke-width="8" stroke-linecap="round"/><path d="M200 110 a100 100 0 0 0 -100 -100" fill="none" stroke="#F9B233" stroke-width="8" stroke-linecap="round" opacity=".6"/>
+<circle cx="285" cy="200" r="10" fill="#FFC93C"/>
+</svg>

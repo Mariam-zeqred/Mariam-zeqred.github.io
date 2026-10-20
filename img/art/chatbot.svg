@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="chatbot illustration">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3C4"/><stop offset="1" stop-color="#E3F2FA"/></linearGradient>
+</defs>
+<rect width="800" height="500" fill="url(#sky)"/>
+<circle cx="660" cy="110" r="70" fill="#FFC93C"/>
+<circle cx="660" cy="110" r="92" fill="none" stroke="#F9B233" stroke-width="3" stroke-dasharray="10 14" opacity=".6"/>
+<path d="M0 400 C 140 360, 260 440, 400 400 S 660 360, 800 400 V500 H0Z" fill="#2E9CCA" opacity=".35"/>
+<path d="M0 430 C 160 400, 240 470, 400 440 S 640 400, 800 440 V500 H0Z" fill="#1B6CA8" opacity=".45"/>
+
+<path d="M180 160 h300 a30 30 0 0 1 30 30 v110 a30 30 0 0 1 -30 30 h-200 l-60 50 v-50 h-40 a30 30 0 0 1 -30 -30 v-110 a30 30 0 0 1 30 -30z" fill="#FFFFFF" stroke="#0B3D91" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M220 215 H440 M220 255 H380" fill="none" stroke="#0B3D91" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+<path d="M620 250 h-180 a30 30 0 0 0 -30 30 v70 a30 30 0 0 0 30 30 h120 l60 45 v-45 a30 30 0 0 0 30 -30 v-70 a30 30 0 0 0 -30 -30z" fill="#FFC93C" stroke="#0B3D91" stroke-width="10" stroke-linejoin="round"/>
+<circle cx="470" cy="315" r="9" fill="#0B3D91"/><circle cx="520" cy="315" r="9" fill="#0B3D91"/><circle cx="570" cy="315" r="9" fill="#0B3D91"/>
+</svg>

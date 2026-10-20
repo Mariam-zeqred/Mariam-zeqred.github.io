@@ -15,7 +15,9 @@
    - a second language later: copy this object into CONTENT.ar and translate.
 
    Image names refer to img/<name>.jpg (web-sized copies made by the script);
-   the originals stay in assets/.
+   a name with its own extension (e.g. "telemetry-timeline.png") is used as is.
+   `art: "<name>"` points at a drawn illustration img/art/<name>.svg (made by
+   scripts/make_art.py) for entries that have no photo yet. The originals stay in assets/.
    ============================================================================ */
 window.CONTENT = {
   meta: {
@@ -121,8 +123,8 @@ window.CONTENT = {
         name: "Fire-and-Motion-Detection",
         title: "Fire and motion detection",
         repo: "https://github.com/Mariam-zeqred/Fire-and-Motion-Detection",
+        art: "fire-motion",            /* drawn illustration (img/art/); replace with image: "..." when a photo exists */
         publicFrom: "2026-01-01",
-        image: null,
         summary: [
           "Earlier project (2025): real-time fire and motion detection from a webcam or external camera feed using OpenCV image processing, with an alert path (notification or alarm) and event logging. Python, OpenCV, NumPy; TensorFlow/Keras optional for the fire classifier."
         ],
@@ -135,6 +137,7 @@ window.CONTENT = {
         name: "incubator-telemetry-analysis",
         title: "Incubator telemetry analysis",
         repo: "https://github.com/Mariam-zeqred/incubator-telemetry-analysis",
+        image: "telemetry-timeline.png", imageAlt: "Chamber, ambient and setpoint over one day of real incubator telemetry, heater-on periods shaded",
         publicFrom: "2026-10-19",
         summary: ["Analysis of real incubator telemetry: thermal model fit and anomaly detectors."],
         tags: ["Python", "Data analysis", "Anomaly detection"],
@@ -144,6 +147,7 @@ window.CONTENT = {
         name: "iot-system-design-handbook",
         title: "IoT system design handbook",
         repo: "https://github.com/Mariam-zeqred/iot-system-design-handbook",
+        art: "handbook",
         publicFrom: "2026-10-19",
         summary: ["Course in ten chapters on designing IoT systems."],
         tags: ["Course", "IoT"]
@@ -152,6 +156,7 @@ window.CONTENT = {
         name: "esp32-mqtt-sensor-node",
         title: "ESP32 MQTT sensor node",
         repo: "https://github.com/Mariam-zeqred/esp32-mqtt-sensor-node",
+        art: "esp32",
         publicFrom: "2026-10-26",
         summary: ["An ESP32 sensor node publishing readings over MQTT."],
         tags: ["ESP32", "MQTT"]
@@ -160,6 +165,7 @@ window.CONTENT = {
         name: "freertos-esp32-patterns",
         title: "FreeRTOS patterns on ESP32",
         repo: "https://github.com/Mariam-zeqred/freertos-esp32-patterns",
+        art: "rtos",
         publicFrom: "2026-10-26",
         summary: ["FreeRTOS task and queue patterns on the ESP32."],
         tags: ["ESP32", "FreeRTOS", "C"]
@@ -168,6 +174,7 @@ window.CONTENT = {
         name: "job-recommender-chatbot",
         title: "Job-recommender chatbot",
         repo: "https://github.com/Mariam-zeqred/job-recommender-chatbot",
+        art: "chatbot",
         publicFrom: "2026-11-02",
         summary: ["A chatbot that recommends jobs."],
         tags: ["Python", "Machine learning"]
@@ -176,6 +183,7 @@ window.CONTENT = {
         name: "poultry-vision-counting",
         title: "Poultry vision counting",
         repo: "https://github.com/Mariam-zeqred/poultry-vision-counting",
+        art: "poultry-vision",
         publicFrom: "2026-11-02",
         summary: ["Counting birds in a poultry house from camera images."],
         tags: ["Computer vision", "Python"]
@@ -184,6 +192,7 @@ window.CONTENT = {
         name: "computer-vision-fundamentals",
         title: "Computer vision fundamentals",
         repo: "https://github.com/Mariam-zeqred/computer-vision-fundamentals",
+        art: "cv",
         publicFrom: "2026-11-02",
         summary: ["Course on the fundamentals of computer vision."],
         tags: ["Course", "Computer vision"]
@@ -192,6 +201,7 @@ window.CONTENT = {
         name: "aws-iot-telemetry-pipeline",
         title: "AWS IoT telemetry pipeline",
         repo: "https://github.com/Mariam-zeqred/aws-iot-telemetry-pipeline",
+        art: "aws-pipeline",
         publicFrom: "2026-11-09",
         summary: ["An IoT telemetry pipeline on AWS, defined with the AWS CDK."],
         tags: ["AWS", "CDK", "IoT"]
@@ -200,6 +210,7 @@ window.CONTENT = {
         name: "tinyml-esp32-anomaly",
         title: "TinyML anomaly detection on ESP32",
         repo: "https://github.com/Mariam-zeqred/tinyml-esp32-anomaly",
+        art: "tinyml",
         publicFrom: "2026-11-09",
         summary: ["Anomaly detection running on the ESP32 itself."],
         tags: ["TinyML", "ESP32"]
@@ -208,6 +219,7 @@ window.CONTENT = {
         name: "aws-architecture-by-example",
         title: "AWS architecture by example",
         repo: "https://github.com/Mariam-zeqred/aws-architecture-by-example",
+        art: "aws-arch",
         publicFrom: "2026-11-09",
         summary: ["Course on AWS architecture, built from worked examples."],
         tags: ["Course", "AWS"]
@@ -216,6 +228,7 @@ window.CONTENT = {
         name: "lora-link-budget",
         title: "LoRa link budget",
         repo: "https://github.com/Mariam-zeqred/lora-link-budget",
+        art: "lora",
         publicFrom: "2026-11-16",
         summary: ["Link-budget and range estimation for LoRa links."],
         tags: ["LoRa", "RF"],
@@ -225,6 +238,7 @@ window.CONTENT = {
         name: "wifi-rssi-localization",
         title: "Wi-Fi RSSI localisation",
         repo: "https://github.com/Mariam-zeqred/wifi-rssi-localization",
+        art: "wifi",
         publicFrom: "2026-11-16",
         summary: ["Indoor localisation from Wi-Fi signal strength."],
         tags: ["Wi-Fi", "Localisation"]
@@ -233,6 +247,7 @@ window.CONTENT = {
         name: "incubator-thermal-control-sim",
         title: "Incubator thermal-control simulation",
         repo: "https://github.com/Mariam-zeqred/incubator-thermal-control-sim",
+        image: "thermal-sim-cold-start.png", imageAlt: "Four heater controllers compared on the fitted plant during a cold start",
         publicFrom: "2026-11-23",
         summary: ["Simulation of the incubator's heating with fitted thermal models and a comparison of heater controllers."],
         tags: ["Python", "Control", "Simulation"],
@@ -260,7 +275,7 @@ window.CONTENT = {
       {
         title: "LoRa link budget and range",
         href: "sim/lora.html",
-        image: null,
+        art: "lora",
         text: "Path-loss model, spreading factor, bandwidth and fade margin: how far a LoRa sensor node reaches under different assumptions."
       }
     ]
@@ -405,13 +420,15 @@ window.CONTENT = {
         title: "Python",
         issuer: "New Horizons",
         date: "2022",
-        image: null   /* scan not supplied yet: set to "new-horizons-python-2022" once added */
+        image: null,  /* scan not supplied yet: set to "new-horizons-python-2022" once added */
+        art: "certificate"
       },
       {
         title: "Front End",
         issuer: "New Horizons",
         date: "2019",
-        image: null   /* scan not supplied yet */
+        image: null,  /* scan not supplied yet */
+        art: "certificate"
       }
     ]
   },

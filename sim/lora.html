@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LoRa link budget and range – Mariam Loutfi</title>
+  <meta name="description" content="LoRa link-budget calculator: transmit power, antenna gains, spreading factor, bandwidth, noise figure, log-distance path-loss exponent and fade margin give receiver sensitivity, link budget and estimated range.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../"><img src="../favicon.svg" alt="" width="32" height="32"><span>Mariam Loutfi</span></a>
+      <ul class="nav-links static">
+        <li><a href="../#projects">Projects</a></li>
+        <li><a href="../#simulations">Simulations</a></li>
+        <li><a href="incubator.html">Incubator sim</a></li>
+        <li><a href="poultry.html">Poultry sim</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="sim-page">
+    <div class="wrap">
+      <p class="crumbs"><a href="../">Home</a> › <a href="../#simulations">Simulations</a> › LoRa</p>
+      <h1>LoRa link budget and range calculator</h1>
+      <p class="intro">How far a LoRa sensor node reaches under a chosen set of assumptions: the receiver sensitivity from bandwidth, noise figure and the spreading factor's required SNR, and a log-distance path-loss model with a fade margin.</p>
+
+      <div class="sim-layout">
+        <aside>
+          <div class="panel">
+            <h3>Radio</h3>
+            <div class="ctl"><label for="txPower">Transmit power (dBm)</label><output id="txPower-out"></output><input type="range" id="txPower" min="2" max="27" step="1" value="14"></div>
+            <div class="ctl"><label for="txGain">TX antenna gain (dBi)</label><output id="txGain-out"></output><input type="range" id="txGain" min="-3" max="8" step="0.5" value="2"></div>
+            <div class="ctl"><label for="rxGain">RX antenna gain (dBi)</label><output id="rxGain-out"></output><input type="range" id="rxGain" min="-3" max="8" step="0.5" value="2"></div>
+            <div class="ctl"><label for="freq">Frequency (MHz)</label>
+              <select id="freq"><option value="433">433 (EU/Egypt ISM)</option><option value="868" selected>868 (EU)</option><option value="915">915 (US)</option></select></div>
+            <div class="ctl"><label for="sf">Spreading factor</label>
+              <select id="sf"><option>7</option><option>8</option><option selected>9</option><option>10</option><option>11</option><option>12</option></select></div>
+            <div class="ctl"><label for="bw">Bandwidth (kHz)</label>
+              <select id="bw"><option value="62.5">62.5</option><option value="125" selected>125</option><option value="250">250</option><option value="500">500</option></select></div>
+            <div class="ctl"><label for="nf">Receiver noise figure (dB)</label><output id="nf-out"></output><input type="range" id="nf" min="3" max="10" step="0.5" value="6"></div>
+          </div>
+          <div class="panel">
+            <h3>Propagation</h3>
+            <div class="ctl"><label for="n">Path-loss exponent n</label><output id="n-out"></output><input type="range" id="n" min="2" max="4.5" step="0.1" value="2.8"></div>
+            <div class="ctl"><label for="d0">Reference distance d₀ (m)</label><output id="d0-out"></output><input type="range" id="d0" min="1" max="100" step="1" value="10"></div>
+            <div class="ctl"><label for="margin">Fade margin (dB)</label><output id="margin-out"></output><input type="range" id="margin" min="0" max="30" step="1" value="10"></div>
+            <div class="ctl"><label for="hTx">Node antenna height (m)</label><output id="hTx-out"></output><input type="range" id="hTx" min="0.5" max="30" step="0.5" value="2"></div>
+            <div class="ctl"><label for="hRx">Gateway antenna height (m)</label><output id="hRx-out"></output><input type="range" id="hRx" min="0.5" max="60" step="0.5" value="10"></div>
+          </div>
+        </aside>
+        <div>
+          <canvas class="chart" id="chart" aria-label="Received signal strength against distance"></canvas>
+          <div class="readouts">
+            <div class="readout"><div class="k">Sensitivity</div><div class="v" id="r-sens">–</div></div>
+            <div class="readout"><div class="k">Link budget</div><div class="v" id="r-budget">–</div></div>
+            <div class="readout"><div class="k">Range with margin</div><div class="v" id="r-range">–</div></div>
+            <div class="readout"><div class="k">Range at sensitivity</div><div class="v" id="r-range0">–</div></div>
+            <div class="readout"><div class="k">Radio horizon</div><div class="v" id="r-horizon">–</div></div>
+            <div class="readout"><div class="k">Symbol time</div><div class="v" id="r-ts">–</div></div>
+            <div class="readout"><div class="k">Airtime, 20 B payload</div><div class="v" id="r-air">–</div></div>
+            <div class="readout"><div class="k">Bit rate (CR 4/5)</div><div class="v" id="r-bitrate">–</div></div>
+          </div>
+          <div class="note">A calculator, not a measurement. The log-distance exponent n (2 free space, about 2.7–3.5 in open rural or suburban terrain, 4 and above with obstructions) dominates the answer, and real links vary by tens of dB with terrain, vegetation and antenna placement. Treat the range as an order of magnitude and confirm it with a field test; the radio horizon is a separate hard limit.</div>
+          <div class="explain">
+            <h2>Formulas</h2>
+            <p>Sensitivity = −174 dBm/Hz + 10·log₁₀(BW) + NF + SNR<sub>req</sub>(SF), with the required SNR from −7.5 dB at SF7 to −20 dB at SF12. Link budget = P<sub>tx</sub> + G<sub>tx</sub> + G<sub>rx</sub> − sensitivity. Path loss = free-space loss at d₀ + 10·n·log₁₀(d/d₀). Range is the distance where the received power falls to sensitivity + fade margin. Symbol time = 2<sup>SF</sup>/BW; the airtime uses the SX127x formula with explicit header, coding rate 4/5, 8 preamble symbols and low-data-rate optimisation when the symbol exceeds 16 ms.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer><div class="wrap">Built with plain HTML/CSS/JS, hosted on GitHub Pages. <a href="../">Back to the home page</a></div></footer>
+  <script src="../js/sim-lora.js"></script>
+</body>
+</html>

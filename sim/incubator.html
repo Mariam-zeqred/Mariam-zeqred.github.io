@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Queen-bee incubator thermal simulation – Mariam Loutfi</title>
+  <meta name="description" content="Interactive simulation of the queen-bee incubator's heating: fitted thermal model, the firmware's on/off controller with OFF-anticipation, a plain thermostat and a PID, door opening, sensor fault and the 40 °C safety latch.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../"><img src="../favicon.svg" alt="" width="32" height="32"><span>Mariam Loutfi</span></a>
+      <ul class="nav-links static">
+        <li><a href="../#projects">Projects</a></li>
+        <li><a href="../#simulations">Simulations</a></li>
+        <li><a href="poultry.html">Poultry sim</a></li>
+        <li><a href="lora.html">LoRa</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="sim-page">
+    <div class="wrap">
+      <p class="crumbs"><a href="../">Home</a> › <a href="../#simulations">Simulations</a> › Incubator</p>
+      <h1>Queen-bee incubator: thermal control simulation</h1>
+      <p class="intro">The chamber of the <a href="https://github.com/Mariam-zeqred/queen-bee-incubator" target="_blank" rel="noopener">queen-bee-incubator</a> as a thermal model with parameters fitted on one day of real telemetry, driven by the same on/off decision the firmware makes. Change the sliders while it runs, open the door, inject a sensor fault, and compare controllers.</p>
+
+      <div class="sim-layout">
+        <aside>
+          <div class="panel">
+            <h3>Setpoint and plant</h3>
+            <div class="ctl"><label for="target">Target temperature</label><output id="target-out"></output><input type="range" id="target" min="30" max="38.8" step="0.1" value="34.5"></div>
+            <div class="ctl"><label for="ambient">Ambient temperature</label><output id="ambient-out"></output><input type="range" id="ambient" min="15" max="35" step="1" value="27"></div>
+            <div class="ctl"><label for="powerScale">Heater power scale</label><output id="powerScale-out"></output><input type="range" id="powerScale" min="0.5" max="1.5" step="0.05" value="1"></div>
+            <div class="ctl"><label for="plant">Plant model</label>
+              <select id="plant">
+                <option value="heaterLag">Heater-lag, 2nd order (fitted, RMSE 0.16 °C)</option>
+                <option value="firstOrder">First order + 210 s dead time (fitted, RMSE 0.29 °C)</option>
+              </select></div>
+          </div>
+          <div class="panel">
+            <h3>Controller</h3>
+            <div class="ctl"><label for="ctlA">Controller A</label>
+              <select id="ctlA">
+                <option value="firmware">On/off with OFF-anticipation (firmware)</option>
+                <option value="plain">On/off, plain thermostat</option>
+                <option value="pid">PID (PI, SIMC-tuned) on a relay</option>
+              </select></div>
+            <div class="ctl"><label for="ctlB">Compare with B</label>
+              <select id="ctlB">
+                <option value="plain">On/off, plain thermostat</option>
+                <option value="firmware">On/off with OFF-anticipation (firmware)</option>
+                <option value="pid">PID (PI, SIMC-tuned) on a relay</option>
+                <option value="none">(none)</option>
+              </select></div>
+            <div class="ctl"><label for="band">Hysteresis band (total)</label><output id="band-out"></output><input type="range" id="band" min="0.1" max="1.0" step="0.05" value="0.4"></div>
+            <div class="ctl"><label for="anticipation">OFF-anticipation</label><output id="anticipation-out"></output><input type="range" id="anticipation" min="0" max="0.3" step="0.01" value="0.1"></div>
+            <div class="ctl"><label for="coastLead">Coast lead (rate × lead)</label><output id="coastLead-out"></output><input type="range" id="coastLead" min="0" max="400" step="10" value="200"></div>
+          </div>
+          <div class="panel">
+            <h3>Run</h3>
+            <div class="ctl"><label for="speed">Simulation speed</label><output id="speed-out"></output><input type="range" id="speed" min="1" max="600" step="1" value="60"></div>
+            <div class="ctl"><label for="view">Chart window</label>
+              <select id="view"><option value="1">1 hour</option><option value="2">2 hours</option><option value="4" selected>4 hours</option><option value="8">8 hours</option></select></div>
+            <div class="btn-row">
+              <button class="btn btn-primary btn-sm" id="run" type="button">Pause</button>
+              <button class="btn btn-outline btn-sm" id="reset" type="button">Reset (cold start)</button>
+              <button class="btn btn-outline btn-sm" id="hot" type="button">Reset at target</button>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-accent btn-sm" id="door" type="button">Open the door</button>
+              <button class="btn btn-accent btn-sm" id="fault" type="button">Inject sensor fault</button>
+              <button class="btn btn-outline btn-sm" id="ack" type="button" disabled>Acknowledge cutoff</button>
+            </div>
+          </div>
+        </aside>
+
+        <div>
+          <canvas class="chart" id="chart" aria-label="Chamber temperature over time with target band and heater state"></canvas>
+          <div class="legend">
+            <span style="--c:#1B6CA8">controller A</span>
+            <span style="--c:#E8590C">controller B</span>
+            <span style="--c:#FFC93C">target band</span>
+            <span style="--c:#C92A2A">40 °C safety cutoff</span>
+          </div>
+          <div class="readouts">
+            <div class="readout"><div class="k">Sim time</div><div class="v" id="r-time">–</div></div>
+            <div class="readout"><div class="k">Chamber (A)</div><div class="v" id="r-temp">–</div></div>
+            <div class="readout"><div class="k">Heater (A)</div><div class="v" id="r-heater">–</div></div>
+            <div class="readout"><div class="k">Duty 30 min / total</div><div class="v" id="r-duty">–</div></div>
+            <div class="readout"><div class="k">Relay switch-ons</div><div class="v" id="r-switch">–</div></div>
+            <div class="readout"><div class="k">Max overshoot</div><div class="v" id="r-over">–</div></div>
+            <div class="readout"><div class="k">Time in band</div><div class="v" id="r-band">–</div></div>
+            <div class="readout"><div class="k">Safety task</div><div class="v" id="r-safety">–</div></div>
+          </div>
+          <div id="cmp-wrap" class="explain" hidden>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Controller</th><th>Max overshoot</th><th>Switch-ons</th><th>Duty</th><th>In band</th></tr></thead>
+              <tbody id="cmp"></tbody>
+            </table></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">This is a simplified model. Its three parameters were fitted on one device and one day of telemetry (3 October 2026, 1 367 readings at 15 s), so it reproduces that day's steady state and duty cycle but has not been validated on new data. The door-opening loss (×10) and the sensor-fault behaviour are illustrative.</div>
+
+      <div class="explain">
+        <h2>What is simulated</h2>
+        <p><strong>Plant.</strong> The default is the "heater-lag" model: the heat delivered by the element, <code>E</code>, lags the relay with time constant τ<sub>h</sub>, and the chamber loses heat to ambient: <code>dE/dt = (a·u − E)/τ_h</code>, <code>dT/dt = E − b·(T − T_out)</code> with <code>a = 0.59 °C/min</code>, <code>τ_h = 4.9 min</code>, <code>b = 0.0111 /min</code> (chamber time constant 90 min). The alternative is a first-order model with a 210 s dead time (<code>a = 0.55</code>, <code>b = 0.0101</code>). Both were fitted by simulating the model against the measured trace. The lag is the main story of the real data: after several minutes of heating the chamber keeps warming for up to a quarter of an hour (+1.4 to +3.4 °C after switch-off was measured), which is why a plain thermostat overshoots on this plant.</p>
+        <p><strong>Controllers.</strong> "On/off with OFF-anticipation" is the heater decision of the real firmware with its Config.h constants: ON when the projected temperature is below target − 0.2 °C; OFF when the projected temperature exceeds target + 0.2 − 0.1 °C (the anticipation); the projection is the reading plus the rate of rise over the last 60 s times a 200 s coast lead; a 30 s minimum OFF time; and after 600 s continuously ON a forced 60 s rest. The plain thermostat only uses the band. The PID is a PI tuned with Skogestad's SIMC rules on the first-order fit (k<sub>p</sub> 0.26 /°C, T<sub>i</sub> 28 min), turned into relay pulses by time-proportioning over a 120 s window with a 10 s minimum pulse.</p>
+        <p><strong>Safety task.</strong> As in the firmware, the interlock sits outside every controller: the heater is off while the door is open; a reading at or above 40 °C latches the heater off until an operator acknowledges <em>and</em> the chamber has cooled 0.5 °C; and when the sensor stops delivering valid readings for 10 s the heater is forced off and a sensor error is shown. The sensor reading handed to the controller is quantised to 0.01 °C like the SHT31 in the export.</p>
+        <p><strong>What to try.</strong> Start cold with controller A = firmware and B = plain thermostat and watch the overshoot difference on the first approach. Set the anticipation and coast lead to zero to see the firmware logic degrade into the plain thermostat. Raise the target to 38.8 °C (the maximum the firmware allows) and look at the duty cycle: the real device held 38.8 °C at about 19 % duty. Open the door at steady state; the recovery takes 12–18 minutes after it closes. Scale the heater power up to 1.5 and watch the cutoff latch.</p>
+        <p class="small muted">Source: ported to JavaScript from the author's Python repositories incubator-telemetry-analysis (parameter fit) and incubator-thermal-control-sim (plants, controllers, interlock); the controller logic follows Control.cpp of queen-bee-incubator.</p>
+      </div>
+    </div>
+  </main>
+  <footer><div class="wrap">Built with plain HTML/CSS/JS, hosted on GitHub Pages. <a href="../">Back to the home page</a></div></footer>
+  <script src="../js/sim-incubator.js"></script>
+</body>
+</html>

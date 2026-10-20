@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poultry-house climate controller simulation – Mariam Loutfi</title>
+  <meta name="description" content="Interactive simulation of a poultry house with N birds, outdoor weather and ammonia build-up, controlled by the smart-poultry-farm cabinet logic: thresholds, hard safety limits, Auto/Off/Manual selectors and an LCD readout.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #alerts { list-style: none; padding: 0; margin: 0; font-family: var(--mono); font-size: .85rem; display: grid; gap: 4px; }
+    #alerts li.critical { color: var(--danger); font-weight: 700; }
+    #alerts li.warning { color: #8a5a00; }
+    .check { display: flex; gap: 8px; align-items: center; font-weight: 600; margin-bottom: 8px; font-size: .93rem; }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../"><img src="../favicon.svg" alt="" width="32" height="32"><span>Mariam Loutfi</span></a>
+      <ul class="nav-links static">
+        <li><a href="../#projects">Projects</a></li>
+        <li><a href="../#simulations">Simulations</a></li>
+        <li><a href="incubator.html">Incubator sim</a></li>
+        <li><a href="lora.html">LoRa</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="sim-page">
+    <div class="wrap">
+      <p class="crumbs"><a href="../">Home</a> › <a href="../#simulations">Simulations</a> › Poultry house</p>
+      <h1>Poultry house: climate-controller simulation</h1>
+      <p class="intro">A poultry house with a chosen number of birds, outdoor weather and ammonia build-up, controlled by the logic of the <a href="https://github.com/Mariam-zeqred/smart-poultry-farm" target="_blank" rel="noopener">smart-poultry-farm</a> cabinet: its default thresholds, its hysteresis rules, its hard safety limits and the Auto / Off / Manual selector per actuator. Flip the switches and watch the house respond.</p>
+
+      <div class="sim-layout">
+        <aside>
+          <div class="panel">
+            <h3>The house</h3>
+            <div class="ctl"><label for="birds">Birds</label><output id="birds-out"></output><input type="range" id="birds" min="0" max="5000" step="50" value="1500"></div>
+            <div class="ctl"><label for="tOut">Outdoor temperature</label><output id="tOut-out"></output><input type="range" id="tOut" min="0" max="45" step="0.5" value="28"></div>
+            <div class="ctl"><label for="rhOut">Outdoor humidity</label><output id="rhOut-out"></output><input type="range" id="rhOut" min="10" max="100" step="1" value="55"></div>
+            <label class="check"><input type="checkbox" id="dayNight"> Day/night cycle (±6 °C, ∓15 % over 24 h)</label>
+          </div>
+          <div class="panel">
+            <h3>Thresholds (app / LCD settings)</h3>
+            <div class="ctl"><label for="tempLow">Heater on below</label><output id="tempLow-out"></output><input type="range" id="tempLow" min="5" max="35" step="0.5" value="18"></div>
+            <div class="ctl"><label for="tempHigh">Cooler + fan on above</label><output id="tempHigh-out"></output><input type="range" id="tempHigh" min="15" max="40" step="0.5" value="24"></div>
+            <div class="ctl"><label for="humLow">Humidifier on below</label><output id="humLow-out"></output><input type="range" id="humLow" min="20" max="70" step="1" value="50"></div>
+            <div class="ctl"><label for="humHigh">Fan on above</label><output id="humHigh-out"></output><input type="range" id="humHigh" min="40" max="90" step="1" value="70"></div>
+            <div class="ctl"><label for="gasHigh">Fan on above (NH₃)</label><output id="gasHigh-out"></output><input type="range" id="gasHigh" min="50" max="440" step="10" value="400"></div>
+            <div class="ctl"><label for="hyst">Hysteresis</label><output id="hyst-out"></output><input type="range" id="hyst" min="0.5" max="5" step="0.5" value="1.5"></div>
+            <label class="check"><input type="checkbox" id="cycle"> Fan cycle (scheduled airing)</label>
+            <div class="ctl"><label for="cycleOnH">Cycle on</label><output id="cycleOnH-out"></output><input type="range" id="cycleOnH" min="0.5" max="6" step="0.5" value="3"></div>
+            <div class="ctl"><label for="cycleOffH">Cycle off</label><output id="cycleOffH-out"></output><input type="range" id="cycleOffH" min="0.5" max="6" step="0.5" value="2"></div>
+          </div>
+          <div class="panel">
+            <h3>Run</h3>
+            <div class="ctl"><label for="speed">Simulation speed</label><output id="speed-out"></output><input type="range" id="speed" min="1" max="600" step="1" value="60"></div>
+            <div class="ctl"><label for="view">Chart window</label>
+              <select id="view"><option value="1">1 hour</option><option value="2" selected>2 hours</option><option value="6">6 hours</option><option value="24">24 hours</option></select></div>
+            <div class="btn-row">
+              <button class="btn btn-primary btn-sm" id="run" type="button">Pause</button>
+              <button class="btn btn-outline btn-sm" id="reset" type="button">Reset</button>
+            </div>
+          </div>
+        </aside>
+
+        <div>
+          <div class="panel" style="margin-bottom:16px">
+            <h3>Control cabinet</h3>
+            <div style="display:grid;gap:14px;grid-template-columns:1fr;align-items:start" id="cab">
+              <div>
+                <div class="lcd" id="lcd" aria-live="polite">T 28.0C  H 55%
+Gas 5ppm    AUTO</div>
+                <p style="margin:10px 0 0"><span class="alarm-light" id="alarm-light"></span><span id="alarm-text">no alarm</span></p>
+                <p class="small muted" style="margin:6px 0 0">Sim time <strong id="r-time">0:00 h</strong> · <span id="r-warn">–</span></p>
+              </div>
+              <div>
+                <div class="aom" id="aom"></div>
+                <div class="btn-row"><button class="btn btn-outline btn-sm" id="allAuto" type="button">All selectors to Auto</button></div>
+              </div>
+            </div>
+          </div>
+          <canvas class="chart" id="chart" aria-label="House temperature, humidity and ammonia over time with actuator states"></canvas>
+          <div class="legend">
+            <span style="--c:#2E9CCA">thresholds</span>
+            <span style="--c:#C92A2A">hard safety limits</span>
+            <span style="--c:#1B6CA8">actuator on</span>
+          </div>
+          <div class="panel" style="margin-top:16px">
+            <h3>Alerts (push notifications)</h3>
+            <ul id="alerts"></ul>
+          </div>
+        </div>
+      </div>
+      <style>@media (min-width: 640px) { #cab { grid-template-columns: 1fr 1fr !important; } }</style>
+
+      <div class="note">This is a simplified model. The house physics (how fast birds warm, moisten and foul the air, what a fan, a heater or a wet pad does per minute) are illustrative numbers chosen to give realistic-looking behaviour; they were not measured on a real house. The controller rules, thresholds, safety limits and interlocks are taken from the firmware.</div>
+
+      <div class="explain">
+        <h2>What is simulated</h2>
+        <p><strong>House.</strong> One lumped volume. Birds add heat, moisture and ammonia in proportion to their number. Air exchange is a small leakage plus a fixed amount per running fan; it pulls temperature and humidity towards the outdoor values and removes ammonia. The heater adds heat. The evaporative cooler is a wet pad: the air the fans draw in leaves it close to the outdoor wet-bulb temperature and nearly saturated, so it cools well in dry weather, little in humid weather, and not at all without a running fan. The humidifier adds moisture.</p>
+        <p><strong>Controller.</strong> Every 3 s the auto rules of <code>sensors_evaluate()</code> run with the firmware's default thresholds (heater below 18 °C, cooler and fan above 24 °C, humidifier below 50 %, fan above 70 % humidity or 400 ppm, hysteresis 1.5): an actuator turns on at its threshold and off only once the reading has cleared it by the hysteresis; high ammonia also forces the heater off. The hard limits of <code>checkSafety()</code> come first and set every relay explicitly: ammonia above 450 ppm gives maximum ventilation with everything else off; below 10 °C heat only; above 42 °C cooler plus fans; humidity below 30 % humidifier only; above 85 % fans only. Each raises a critical alert with a 5-minute cooldown. The scheduled fan cycle owns fan 1 while enabled. Two interlocks apply: heater and cooler never run together, and the cooler forces fan 1 on because an evaporative pad needs airflow.</p>
+        <p><strong>Selectors.</strong> The real cabinet has an A/O/M selector per contactor (the front panel in the photo). In this model the O and M positions bypass the controller like a hardware selector, so the safety logic can only act on actuators left in Auto; the alarm light and siren still fire. The firmware drives one fan relay while the cabinet has two fan contactors, so fan 2 is modelled here as a second ventilation stage (on above the cooler threshold plus hysteresis or on high ammonia).</p>
+        <p><strong>What to try.</strong> Put all selectors to Off and raise the bird count: watch ammonia climb towards the 450 ppm hard limit and, once it crosses, the alarm fire while the controller can do nothing because the fans are switched off. Set the fans back to Auto. Turn on the day/night cycle with 3 000 birds and watch the cooler cycle in the afternoon. Force the cooler to Manual with fan 1 in Off to see the airflow warning.</p>
+      </div>
+    </div>
+  </main>
+  <footer><div class="wrap">Built with plain HTML/CSS/JS, hosted on GitHub Pages. <a href="../">Back to the home page</a></div></footer>
+  <script src="../js/sim-poultry.js"></script>
+</body>
+</html>

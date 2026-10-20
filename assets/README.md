@@ -44,3 +44,6 @@ Screenshots of the smart-poultry-farm Flutter app: six Arabic screens (dashboard
 
 ## logos/
 lotus-power.png - Lotus Power logo ("Building electrified systems"), her employer.
+
+## Contact links (supplied 2026-10-20)
+- LinkedIn: https://www.linkedin.com/in/mariam-mohamed-mamdouh-lotfi-6b1a47271

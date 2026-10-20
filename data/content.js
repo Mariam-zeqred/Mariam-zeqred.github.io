@@ -131,13 +131,11 @@ window.CONTENT = {
       },
 
       /* ---- scheduled repositories: hidden until publicFrom (checked client-side) ---- */
-      /* These two were scheduled for 2026-10-19 but were still private on 2026-10-20, so
-         their date was moved to the next batch. Set it back once the repo is public. */
       {
         name: "incubator-telemetry-analysis",
         title: "Incubator telemetry analysis",
         repo: "https://github.com/Mariam-zeqred/incubator-telemetry-analysis",
-        publicFrom: "2026-10-26",
+        publicFrom: "2026-10-19",
         summary: ["Analysis of real incubator telemetry: thermal model fit and anomaly detectors."],
         tags: ["Python", "Data analysis", "Anomaly detection"],
         simulation: { label: "Thermal simulation", href: "sim/incubator.html" }
@@ -146,7 +144,7 @@ window.CONTENT = {
         name: "iot-system-design-handbook",
         title: "IoT system design handbook",
         repo: "https://github.com/Mariam-zeqred/iot-system-design-handbook",
-        publicFrom: "2026-10-26",
+        publicFrom: "2026-10-19",
         summary: ["Course in ten chapters on designing IoT systems."],
         tags: ["Course", "IoT"]
       },

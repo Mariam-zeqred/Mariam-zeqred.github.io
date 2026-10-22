@@ -22,6 +22,17 @@ window.REPOS = {
   "intro": "Analysis of real telemetry from one queen-bee incubator (the device whose firmware and apps are in queen-bee-incubator). This repo turns a day of 15-second readings into heater statistics, two fitted thermal models whose parameters drive a control-simulation repo, and a scored comparison of four anomaly detectors on injected faults. Every number below is produced by scripts/makefigures.py and stored in figures/results.json; the model hand-over is figures/modelparams.json.",
   "chapters": 0
  },
+ "esp32-mqtt-sensor-node": {
+  "url": "https://github.com/Mariam-zeqred/esp32-mqtt-sensor-node",
+  "description": "",
+  "topics": [],
+  "language": "C++",
+  "pushedAt": "2026-10-11",
+  "createdAt": "2026-10-10",
+  "stars": 0,
+  "intro": "An ESP32 reads an SHT31 temperature/humidity sensor every 30 s and publishes one JSON document per reading to an MQTT broker over TLS. The node announces itself with a retained online status and registers a last will so the broker publishes offline when the node vanishes. This repo shows the whole path: firmware (Arduino-ESP32, PlatformIO), a Mosquitto broker in Docker with its own certificate authority, a Python subscriber that logs to CSV, and host-side tests for everything that does not need the board.",
+  "chapters": 0
+ },
  "smart-poultry-farm": {
   "url": "https://github.com/Mariam-zeqred/smart-poultry-farm",
   "description": "End-to-end IoT climate controller for a poultry house: ESP32 controller with safety layer and offline LCD control, Firebase Realtime Database, Flutter app (EN/AR) with push alerts and a vision-AI monitoring tab",
@@ -76,4 +87,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-10-21";
+window.REPOS_UPDATED = "2026-10-22";

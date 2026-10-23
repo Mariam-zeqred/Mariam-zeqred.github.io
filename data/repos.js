@@ -5,11 +5,11 @@ window.REPOS = {
   "description": "",
   "topics": [],
   "language": "Makefile",
-  "pushedAt": "2026-10-20",
+  "pushedAt": "2026-10-23",
   "createdAt": "2026-10-10",
   "stars": 0,
   "intro": "A ten-chapter course for people who can code but have never shipped a device-to-cloud system. One running example throughout: a small-farm environmental monitor (sensors → MCU → gateway → cloud → app). Two real, open-source systems appear as asides: the queen-bee-incubator and the smart-poultry-farm controller.",
-  "chapters": 4
+  "chapters": 5
  },
  "incubator-telemetry-analysis": {
   "url": "https://github.com/Mariam-zeqred/incubator-telemetry-analysis",
@@ -20,6 +20,17 @@ window.REPOS = {
   "createdAt": "2026-10-10",
   "stars": 0,
   "intro": "Analysis of real telemetry from one queen-bee incubator (the device whose firmware and apps are in queen-bee-incubator). This repo turns a day of 15-second readings into heater statistics, two fitted thermal models whose parameters drive a control-simulation repo, and a scored comparison of four anomaly detectors on injected faults. Every number below is produced by scripts/makefigures.py and stored in figures/results.json; the model hand-over is figures/modelparams.json.",
+  "chapters": 0
+ },
+ "freertos-esp32-patterns": {
+  "url": "https://github.com/Mariam-zeqred/freertos-esp32-patterns",
+  "description": "",
+  "topics": [],
+  "language": "C++",
+  "pushedAt": "2026-10-13",
+  "createdAt": "2026-10-10",
+  "stars": 0,
+  "intro": "Six minimal, commented ESP32 sketches, one FreeRTOS pattern each: a producer/consumer queue, mutex-guarded shared state, an event group for startup sequencing, software timers against tasks, the task watchdog catching a stalled task, and core pinning with a priority-inversion demo. Each sketch is a PlatformIO environment, each prints statistics to the serial monitor that show the pattern working (or, with one knob in include/Config.h, failing). The logic that does not need FreeRTOS lives in lib/patternscore/ and is unit-tested on the host.",
   "chapters": 0
  },
  "esp32-mqtt-sensor-node": {
@@ -87,4 +98,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-10-22";
+window.REPOS_UPDATED = "2026-10-23";

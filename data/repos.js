@@ -33,6 +33,17 @@ window.REPOS = {
   "intro": "Analysis of real telemetry from one queen-bee incubator (the device whose firmware and apps are in queen-bee-incubator). This repo turns a day of 15-second readings into heater statistics, two fitted thermal models whose parameters drive a control-simulation repo, and a scored comparison of four anomaly detectors on injected faults. Every number below is produced by scripts/makefigures.py and stored in figures/results.json; the model hand-over is figures/modelparams.json.",
   "chapters": 0
  },
+ "poultry-vision-counting": {
+  "url": "https://github.com/Mariam-zeqred/poultry-vision-counting",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-10-14",
+  "createdAt": "2026-10-10",
+  "stars": 0,
+  "intro": "Counts birds in poultry images with a pre-trained detector (Ultralytics YOLOv8, COCO class bird, no fine-tuning), turns the detections into a density heatmap and a CSV, and feeds the per-frame numbers to an alert engine that raises the same vision alert types the smart-poultry-farm app stores in Firebase. This repo shows what an off-the-shelf COCO detector can and cannot do on chickens, measured against real bounding boxes, and where fine-tuning would have to start.",
+  "chapters": 0
+ },
  "freertos-esp32-patterns": {
   "url": "https://github.com/Mariam-zeqred/freertos-esp32-patterns",
   "description": "",
@@ -109,4 +120,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-10-24";
+window.REPOS_UPDATED = "2026-10-25";

@@ -22,6 +22,17 @@ window.REPOS = {
   "intro": "A ten-chapter course for people who can code but have never shipped a device-to-cloud system. One running example throughout: a small-farm environmental monitor (sensors → MCU → gateway → cloud → app). Two real, open-source systems appear as asides: the queen-bee-incubator and the smart-poultry-farm controller.",
   "chapters": 5
  },
+ "job-recommender-chatbot": {
+  "url": "https://github.com/Mariam-zeqred/job-recommender-chatbot",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-10-18",
+  "createdAt": "2026-10-10",
+  "stars": 0,
+  "intro": "This repo shows a small, inspectable job recommender: paste CV text, get the top-k postings with the skills that matched and the skills that are missing, then rehearse a mock interview for the posting you pick. Everything runs offline with no API key; an LLM backend can be switched on behind an interface but is off by default.",
+  "chapters": 0
+ },
  "incubator-telemetry-analysis": {
   "url": "https://github.com/Mariam-zeqred/incubator-telemetry-analysis",
   "description": "",
@@ -120,4 +131,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-10-25";
+window.REPOS_UPDATED = "2026-10-26";

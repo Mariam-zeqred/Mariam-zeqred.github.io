@@ -5,11 +5,22 @@ window.REPOS = {
   "description": "",
   "topics": [],
   "language": "Makefile",
-  "pushedAt": "2026-10-27",
+  "pushedAt": "2026-10-28",
   "createdAt": "2026-10-10",
   "stars": 0,
   "intro": "A ten-chapter course for people who can code but have never shipped a device-to-cloud system. One running example throughout: a small-farm environmental monitor (sensors → MCU → gateway → cloud → app). Two real, open-source systems appear as asides: the queen-bee-incubator and the smart-poultry-farm controller.",
-  "chapters": 7
+  "chapters": 8
+ },
+ "computer-vision-fundamentals": {
+  "url": "https://github.com/Mariam-zeqred/computer-vision-fundamentals",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-10-28",
+  "createdAt": "2026-10-10",
+  "stars": 0,
+  "intro": "A six-lesson, hands-on course: NumPy and OpenCV first, PyTorch from lesson 4, a pre-trained detector in lesson 6. All six lessons are written. Each lesson is a Markdown chapter of 1 500–3 000 words with one worked example, 3–5 exercises (answers collapsed), Mermaid diagrams where a picture helps and a \"What to read next\" list. Every piece of code a lesson shows is in a runnable lessonN.py that prints the numbers the text quotes and writes the figures the text embeds, so nothing in the prose is unverifiable.",
+  "chapters": 6
  },
  "aws-architecture-by-example": {
   "url": "https://github.com/Mariam-zeqred/aws-architecture-by-example",
@@ -20,17 +31,6 @@ window.REPOS = {
   "createdAt": "2026-10-10",
   "stars": 0,
   "intro": "A six-chapter course for developers who know one or two AWS services and want to design whole systems; five chapters are written so far. Every chapter starts from a brief that could have come from a client, draws a reference architecture in Mermaid, explains each service choice against its alternatives, prices it from the AWS Price List, lists how it fails, and gives an AWS CDK (Python) skeleton that synthesises in make check. Nothing in this repo deploys itself; the deploy commands are in each example's README for you to run from your own account.",
-  "chapters": 5
- },
- "computer-vision-fundamentals": {
-  "url": "https://github.com/Mariam-zeqred/computer-vision-fundamentals",
-  "description": "",
-  "topics": [],
-  "language": "Python",
-  "pushedAt": "2026-10-24",
-  "createdAt": "2026-10-10",
-  "stars": 0,
-  "intro": "A six-lesson, hands-on course: NumPy and OpenCV first, PyTorch from lesson 4. Each lesson is a Markdown chapter of 1 500–3 000 words with one worked example, 3–5 exercises (answers collapsed), Mermaid diagrams where a picture helps and a \"What to read next\" list. Every piece of code a lesson shows is in a runnable lessonN.py that prints the numbers the text quotes and writes the figures the text embeds, so nothing in the prose is unverifiable.",
   "chapters": 5
  },
  "job-recommender-chatbot": {
@@ -53,6 +53,17 @@ window.REPOS = {
   "createdAt": "2026-10-10",
   "stars": 0,
   "intro": "Analysis of real telemetry from one queen-bee incubator (the device whose firmware and apps are in queen-bee-incubator). This repo turns a day of 15-second readings into heater statistics, two fitted thermal models whose parameters drive a control-simulation repo, and a scored comparison of four anomaly detectors on injected faults. Every number below is produced by scripts/makefigures.py and stored in figures/results.json; the model hand-over is figures/modelparams.json.",
+  "chapters": 0
+ },
+ "tinyml-esp32-anomaly": {
+  "url": "https://github.com/Mariam-zeqred/tinyml-esp32-anomaly",
+  "description": "",
+  "topics": [],
+  "language": "C++",
+  "pushedAt": "2026-10-15",
+  "createdAt": "2026-10-10",
+  "stars": 0,
+  "intro": "A tiny autoencoder (1 699 weights, 6 560-byte int8 TensorFlow Lite model) that scores 8-minute temperature windows from a queen-bee incubator and flags the ones it cannot reconstruct. It is trained on one real day of telemetry from the incubator-telemetry-analysis repo, exported for TensorFlow Lite Micro, and shipped with an ESP32 sketch plus a host-side test that replays recorded windows through the same C code the board runs. Faults are injected into the real trace to measure what it detects; the limits of one device, one day are stated below.",
   "chapters": 0
  },
  "poultry-vision-counting": {
@@ -142,4 +153,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-10-27";
+window.REPOS_UPDATED = "2026-10-28";

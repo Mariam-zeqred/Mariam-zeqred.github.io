@@ -5,11 +5,22 @@ window.REPOS = {
   "description": "",
   "topics": [],
   "language": "Makefile",
-  "pushedAt": "2026-10-28",
+  "pushedAt": "2026-10-29",
   "createdAt": "2026-10-10",
   "stars": 0,
   "intro": "A ten-chapter course for people who can code but have never shipped a device-to-cloud system. One running example throughout: a small-farm environmental monitor (sensors → MCU → gateway → cloud → app). Two real, open-source systems appear as asides: the queen-bee-incubator and the smart-poultry-farm controller.",
-  "chapters": 8
+  "chapters": 9
+ },
+ "aws-architecture-by-example": {
+  "url": "https://github.com/Mariam-zeqred/aws-architecture-by-example",
+  "description": "",
+  "topics": [],
+  "language": "Makefile",
+  "pushedAt": "2026-10-29",
+  "createdAt": "2026-10-10",
+  "stars": 0,
+  "intro": "A six-chapter course for developers who know one or two AWS services and want to design whole systems; all six chapters are written. Every chapter starts from a brief that could have come from a client, draws a reference architecture in Mermaid, explains each service choice against its alternatives, prices it from the AWS Price List, lists how it fails, and gives an AWS CDK (Python) skeleton that synthesises in make check. The last chapter reviews the other five with a 26-question checklist that now runs in make check. Nothing in this repo deploys itself; the deploy commands are in each exampl",
+  "chapters": 6
  },
  "computer-vision-fundamentals": {
   "url": "https://github.com/Mariam-zeqred/computer-vision-fundamentals",
@@ -22,17 +33,6 @@ window.REPOS = {
   "intro": "A six-lesson, hands-on course: NumPy and OpenCV first, PyTorch from lesson 4, a pre-trained detector in lesson 6. All six lessons are written. Each lesson is a Markdown chapter of 1 500–3 000 words with one worked example, 3–5 exercises (answers collapsed), Mermaid diagrams where a picture helps and a \"What to read next\" list. Every piece of code a lesson shows is in a runnable lessonN.py that prints the numbers the text quotes and writes the figures the text embeds, so nothing in the prose is unverifiable.",
   "chapters": 6
  },
- "aws-architecture-by-example": {
-  "url": "https://github.com/Mariam-zeqred/aws-architecture-by-example",
-  "description": "",
-  "topics": [],
-  "language": "Makefile",
-  "pushedAt": "2026-10-25",
-  "createdAt": "2026-10-10",
-  "stars": 0,
-  "intro": "A six-chapter course for developers who know one or two AWS services and want to design whole systems; five chapters are written so far. Every chapter starts from a brief that could have come from a client, draws a reference architecture in Mermaid, explains each service choice against its alternatives, prices it from the AWS Price List, lists how it fails, and gives an AWS CDK (Python) skeleton that synthesises in make check. Nothing in this repo deploys itself; the deploy commands are in each example's README for you to run from your own account.",
-  "chapters": 5
- },
  "job-recommender-chatbot": {
   "url": "https://github.com/Mariam-zeqred/job-recommender-chatbot",
   "description": "",
@@ -42,6 +42,17 @@ window.REPOS = {
   "createdAt": "2026-10-10",
   "stars": 0,
   "intro": "This repo shows a small, inspectable job recommender: paste CV text, get the top-k postings with the skills that matched and the skills that are missing, then rehearse a mock interview for the posting you pick. Everything runs offline with no API key; an LLM backend can be switched on behind an interface but is off by default.",
+  "chapters": 0
+ },
+ "aws-iot-telemetry-pipeline": {
+  "url": "https://github.com/Mariam-zeqred/aws-iot-telemetry-pipeline",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-10-17",
+  "createdAt": "2026-10-10",
+  "stars": 0,
+  "intro": "This repo shows a complete device-to-cloud telemetry pipeline for the queen-bee incubator as infrastructure as code (AWS CDK, Python): MQTT with per-device X.509 certificates into IoT Core, a rule into a validating Lambda, a hot store in DynamoDB with a 30-day TTL, a cold store of Parquet files in S3 queried with Athena, a scheduled stale-device check (plus per-device heartbeat alarms for small fleets), and a small status API with a static dashboard. It uses the exact record format the incubator firmware already sends, so it is a drop-in cloud side for the existing device.",
   "chapters": 0
  },
  "incubator-telemetry-analysis": {
@@ -153,4 +164,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-10-28";
+window.REPOS_UPDATED = "2026-10-29";

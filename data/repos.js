@@ -5,11 +5,11 @@ window.REPOS = {
   "description": "",
   "topics": [],
   "language": "Makefile",
-  "pushedAt": "2026-10-29",
+  "pushedAt": "2026-10-30",
   "createdAt": "2026-10-10",
   "stars": 0,
   "intro": "A ten-chapter course for people who can code but have never shipped a device-to-cloud system. One running example throughout: a small-farm environmental monitor (sensors → MCU → gateway → cloud → app). Two real, open-source systems appear as asides: the queen-bee-incubator and the smart-poultry-farm controller.",
-  "chapters": 9
+  "chapters": 10
  },
  "aws-architecture-by-example": {
   "url": "https://github.com/Mariam-zeqred/aws-architecture-by-example",
@@ -53,6 +53,17 @@ window.REPOS = {
   "createdAt": "2026-10-10",
   "stars": 0,
   "intro": "This repo shows a complete device-to-cloud telemetry pipeline for the queen-bee incubator as infrastructure as code (AWS CDK, Python): MQTT with per-device X.509 certificates into IoT Core, a rule into a validating Lambda, a hot store in DynamoDB with a 30-day TTL, a cold store of Parquet files in S3 queried with Athena, a scheduled stale-device check (plus per-device heartbeat alarms for small fleets), and a small status API with a static dashboard. It uses the exact record format the incubator firmware already sends, so it is a drop-in cloud side for the existing device.",
+  "chapters": 0
+ },
+ "lora-link-budget": {
+  "url": "https://github.com/Mariam-zeqred/lora-link-budget",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-10-16",
+  "createdAt": "2026-10-10",
+  "stars": 0,
+  "intro": "A LoRa / LoRaWAN planning calculator: link budget and maximum range (free space, log-distance and Okumura-Hata path loss), receiver sensitivity per spreading factor, time on air per payload size, EU868 duty-cycle and US915 dwell-time checks, and a battery-life estimate for a sleep-and-transmit sensor node. One Python package drives both a CLI and a Streamlit page. This repo shows the arithmetic behind \"how far will it reach and how long will the battery last\" for a farm-scale sensor network, with every formula and assumption written down.",
   "chapters": 0
  },
  "incubator-telemetry-analysis": {
@@ -164,4 +175,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-10-29";
+window.REPOS_UPDATED = "2026-10-30";

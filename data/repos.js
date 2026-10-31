@@ -55,6 +55,17 @@ window.REPOS = {
   "intro": "This repo shows a complete device-to-cloud telemetry pipeline for the queen-bee incubator as infrastructure as code (AWS CDK, Python): MQTT with per-device X.509 certificates into IoT Core, a rule into a validating Lambda, a hot store in DynamoDB with a 30-day TTL, a cold store of Parquet files in S3 queried with Athena, a scheduled stale-device check (plus per-device heartbeat alarms for small fleets), and a small status API with a static dashboard. It uses the exact record format the incubator firmware already sends, so it is a drop-in cloud side for the existing device.",
   "chapters": 0
  },
+ "wifi-rssi-localization": {
+  "url": "https://github.com/Mariam-zeqred/wifi-rssi-localization",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-10-17",
+  "createdAt": "2026-10-10",
+  "stars": 0,
+  "intro": "Indoor localisation by Wi-Fi fingerprinting on the public UJIIndoorLoc dataset: a phone records the signal strength (RSSI) of every access point it can hear, and a model maps that vector to a position, floor and building. This repo shows how far two standard methods, weighted k-nearest neighbours and a small multilayer perceptron, get on the dataset's official train/validation split, in metres, and why the error is what it is. Everything below is produced by make all.",
+  "chapters": 0
+ },
  "lora-link-budget": {
   "url": "https://github.com/Mariam-zeqred/lora-link-budget",
   "description": "",
@@ -175,4 +186,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-10-30";
+window.REPOS_UPDATED = "2026-10-31";

@@ -66,6 +66,17 @@ window.REPOS = {
   "intro": "Indoor localisation by Wi-Fi fingerprinting on the public UJIIndoorLoc dataset: a phone records the signal strength (RSSI) of every access point it can hear, and a model maps that vector to a position, floor and building. This repo shows how far two standard methods, weighted k-nearest neighbours and a small multilayer perceptron, get on the dataset's official train/validation split, in metres, and why the error is what it is. Everything below is produced by make all.",
   "chapters": 0
  },
+ "incubator-thermal-control-sim": {
+  "url": "https://github.com/Mariam-zeqred/incubator-thermal-control-sim",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-10-16",
+  "createdAt": "2026-10-10",
+  "stars": 0,
+  "intro": "Simulation of a queen-bee incubator's heating as a first-order and a second-order thermal model, with the parameters that incubator-telemetry-analysis fitted on one real day of telemetry, and a comparison of four heater controllers on the same relay: the on/off logic of the real queen-bee-incubator firmware (hysteresis with OFF-anticipation, a coast-lead prediction and a duty-cycle limit), a plain thermostat, a PID quantised to relay pulses, and a model-predictive sketch. Every number below is written by scripts/makefigures.py into figures/results.json; make check regenerates all of it.",
+  "chapters": 0
+ },
  "lora-link-budget": {
   "url": "https://github.com/Mariam-zeqred/lora-link-budget",
   "description": "",
@@ -186,4 +197,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-10-31";
+window.REPOS_UPDATED = "2026-11-01";

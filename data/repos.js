@@ -33,6 +33,17 @@ window.REPOS = {
   "intro": "A six-lesson, hands-on course: NumPy and OpenCV first, PyTorch from lesson 4, a pre-trained detector in lesson 6. All six lessons are written. Each lesson is a Markdown chapter of 1 500–3 000 words with one worked example, 3–5 exercises (answers collapsed), Mermaid diagrams where a picture helps and a \"What to read next\" list. Every piece of code a lesson shows is in a runnable lessonN.py that prints the numbers the text quotes and writes the figures the text embeds, so nothing in the prose is unverifiable.",
   "chapters": 6
  },
+ "sensor-fusion-kalman-1d": {
+  "url": "https://github.com/Mariam-zeqred/sensor-fusion-kalman-1d",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-10-21",
+  "createdAt": "2026-10-20",
+  "stars": 0,
+  "intro": "A one-dimensional Kalman filter that turns a queen-bee incubator's three signals, the chamber SHT31, the ambient SHT31 and the heater relay, into one smoothed chamber-temperature estimate with an uncertainty. It runs on a real day of 15-second telemetry copied from incubator-telemetry-analysis and is compared with the raw reading and a moving average, including what each does when the chamber sensor drops out for ten minutes. Every number below is in figures/results.json, written by python -m kalman1d.",
+  "chapters": 0
+ },
  "job-recommender-chatbot": {
   "url": "https://github.com/Mariam-zeqred/job-recommender-chatbot",
   "description": "",
@@ -197,4 +208,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-11-01";
+window.REPOS_UPDATED = "2026-11-04";

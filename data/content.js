@@ -338,7 +338,7 @@ window.CONTENT = {
       {
         degree: "B.Sc. Communication and Computer Engineering",
         school: "Mansoura University",
-        period: "2020 – 2026",
+        period: "2021 – 2026",
         details: [
           "GPA 3.95 / 4.0, ranked 9th of 149.",
           "Special Appreciation Certificate from the Dean, 2024."

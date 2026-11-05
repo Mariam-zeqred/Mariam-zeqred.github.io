@@ -285,7 +285,7 @@ window.CONTENT = {
     heading: "Publications",
     items: [
       {
-        authors: "M. Loutfi et al.",
+        authors: "A. Zidan, M. Loutfi, M. Gazy, G. Nabil, S. E. Hassan, S. Said, B. M. Badr",
         title: "Design and Development of a Smart Incubator for Bee Queens Based on IoT Technology",
         venue: "Journal of Computer Science and Engineering Research 3(1), June 2026",
         doi: "10.64820/AEPJCSER.31.13.22.62026",

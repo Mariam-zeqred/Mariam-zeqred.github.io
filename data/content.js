@@ -23,7 +23,7 @@ window.CONTENT = {
   meta: {
     siteTitle: "Mariam Loutfi – IoT, embedded AI and machine learning",
     description:
-      "Mariam Loutfi, Machine Learning Engineer at Lotus Power (Egypt). ESP32/FreeRTOS firmware, IoT systems for agriculture and machine learning on their data. Looking to start a research master's in 2027.",
+      "Mariam Loutfi, Machine Learning Engineer at Lotus Power (Vancouver, Canada; Egypt office). ESP32/FreeRTOS firmware, IoT systems for agriculture and machine learning on their data. Looking to start a research master's in 2027.",
     url: "https://mariam-zeqred.github.io/",
     ogImage: "img/portrait.jpg",
     lang: "en"
@@ -52,7 +52,7 @@ window.CONTENT = {
     facts: [
       "B.Sc. Communication and Computer Engineering, Mansoura University, 2026",
       "GPA 3.95 / 4.0, ranked 9th of 149",
-      "One journal paper (2026), one conference paper accepted"
+      "One co-authored journal paper (2026); a second paper in preparation"
     ]
   },
 
@@ -105,7 +105,7 @@ window.CONTENT = {
         summary: [
           "End-to-end climate controller for a poultry house. An ESP32 reads temperature, humidity and ammonia and drives a fan, an evaporative cooler, a heater and a humidifier with hysteresis rules. Hard safety limits (gas above 450 ppm, temperature outside 10–42 °C, humidity outside 30–85 %) override everything else and raise push alerts.",
           "The cabinet keeps working with no internet: a 16x2 LCD and four buttons give full local control, and control ownership hands itself back to the LCD after 90 s of cloud silence. App-to-device commands travel over a Firebase Server-Sent-Events stream in under 500 ms.",
-          "Flutter app (English / Arabic) with live dashboard, actuator toggles, thresholds, push alerts and a vision-AI monitoring tab. Five hardware test rounds with the hardware team. A paper on the system is accepted for conference presentation, 2026."
+          "Flutter app (English / Arabic) with live dashboard, actuator toggles, thresholds, push alerts and a vision-AI monitoring tab. Five hardware test rounds with the hardware team. A paper on the system is in preparation."
         ],
         tags: ["ESP32", "FreeRTOS", "MQ135", "AM2302", "Firebase SSE", "Flutter", "OneSignal"],
         gallery: [
@@ -293,10 +293,10 @@ window.CONTENT = {
         project: "queen-bee-incubator"
       },
       {
-        authors: "M. Loutfi et al.",
+        authors: "Lotus Power team, including M. Loutfi",
         title: "Smart poultry-farm monitoring system",
-        venue: "Accepted for conference presentation, 2026",
-        note: "Conference details to be added once the programme is published.",
+        venue: "In preparation",
+        note: "Author list and venue to be confirmed.",
         project: "smart-poultry-farm"
       }
     ]
@@ -311,7 +311,7 @@ window.CONTENT = {
         orgUrl: null,
         logo: "lotus-power.png",
         period: "2026 – present",
-        place: "Egypt",
+        place: "Egypt office (company based in Vancouver, Canada)",
         bullets: [
           "Startup with agriculture, mobility and IoT projects; small team, so the role spans embedded firmware, IoT and data analysis.",
           "Queen-bee incubator: ESP32/FreeRTOS firmware, safety layer, cloud logging, two Flutter apps; thermal analysis of the device's telemetry.",
@@ -324,7 +324,7 @@ window.CONTENT = {
         orgUrl: null,
         logo: "lotus-power.png",
         period: "2025 – 2026",
-        place: "Egypt",
+        place: "Egypt office (company based in Vancouver, Canada)",
         bullets: [
           "Intelligent bee incubators and energy-use optimisation."
         ]

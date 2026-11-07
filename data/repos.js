@@ -54,6 +54,17 @@ window.REPOS = {
   "intro": "A six-lesson, hands-on course: NumPy and OpenCV first, PyTorch from lesson 4, a pre-trained detector in lesson 6. All six lessons are written. Each lesson is a Markdown chapter of 1 500–3 000 words with one worked example, 3–5 exercises (answers collapsed), Mermaid diagrams where a picture helps and a \"What to read next\" list. Every piece of code a lesson shows is in a runnable lessonN.py that prints the numbers the text quotes and writes the figures the text embeds, so nothing in the prose is unverifiable.",
   "chapters": 6
  },
+ "firebase-rtdb-rules-tester": {
+  "url": "https://github.com/Mariam-zeqred/firebase-rtdb-rules-tester",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-10-22",
+  "createdAt": "2026-10-20",
+  "stars": 0,
+  "intro": "A pytest harness for Firebase Realtime Database security rules. It loads a rules.json and a folder of scenario files (\"the device writes its own node\", \"an anonymous client reads everything\", …) and says allow or deny for each one, either with the official Firebase Database emulator when firebase-tools and Java are installed, or with a small, documented interpreter of the common rules subset that runs anywhere. The repo ships a hardened ruleset for an IoT fleet layout, 39 scenarios, and tests that prove the ruleset closes the holes of an open database.",
+  "chapters": 0
+ },
  "sensor-fusion-kalman-1d": {
   "url": "https://github.com/Mariam-zeqred/sensor-fusion-kalman-1d",
   "description": "",
@@ -208,4 +219,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-11-05";
+window.REPOS_UPDATED = "2026-11-07";

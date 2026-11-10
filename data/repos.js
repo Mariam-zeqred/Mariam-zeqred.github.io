@@ -65,6 +65,17 @@ window.REPOS = {
   "intro": "A six-lesson, hands-on course: NumPy and OpenCV first, PyTorch from lesson 4, a pre-trained detector in lesson 6. All six lessons are written. Each lesson is a Markdown chapter of 1 500–3 000 words with one worked example, 3–5 exercises (answers collapsed), Mermaid diagrams where a picture helps and a \"What to read next\" list. Every piece of code a lesson shows is in a runnable lessonN.py that prints the numbers the text quotes and writes the figures the text embeds, so nothing in the prose is unverifiable.",
   "chapters": 6
  },
+ "mqtt-to-sqlite-collector": {
+  "url": "https://github.com/Mariam-zeqred/mqtt-to-sqlite-collector",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-10-23",
+  "createdAt": "2026-10-20",
+  "stars": 0,
+  "intro": "A small Python service that subscribes to the MQTT topics published by esp32-mqtt-sensor-node, validates every message with pydantic, stores it in SQLite (WAL mode), rolls old raw rows up into hourly aggregates, and serves the data over a tiny FastAPI read API. A Docker Compose file adds Mosquitto and Grafana with a provisioned dashboard. The service itself is about 600 lines of Python (765 with comments; tests and tools are extra) and runs on a Raspberry Pi or a small VPS; no time-series database is needed for a farm's worth of nodes.",
+  "chapters": 0
+ },
  "firebase-rtdb-rules-tester": {
   "url": "https://github.com/Mariam-zeqred/firebase-rtdb-rules-tester",
   "description": "",
@@ -230,4 +241,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-11-09";
+window.REPOS_UPDATED = "2026-11-10";

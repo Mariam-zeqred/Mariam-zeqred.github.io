@@ -65,6 +65,17 @@ window.REPOS = {
   "intro": "A six-lesson, hands-on course: NumPy and OpenCV first, PyTorch from lesson 4, a pre-trained detector in lesson 6. All six lessons are written. Each lesson is a Markdown chapter of 1 500–3 000 words with one worked example, 3–5 exercises (answers collapsed), Mermaid diagrams where a picture helps and a \"What to read next\" list. Every piece of code a lesson shows is in a runnable lessonN.py that prints the numbers the text quotes and writes the figures the text embeds, so nothing in the prose is unverifiable.",
   "chapters": 6
  },
+ "lorawan-payload-codec": {
+  "url": "https://github.com/Mariam-zeqred/lorawan-payload-codec",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-10-24",
+  "createdAt": "2026-10-20",
+  "stars": 0,
+  "intro": "Two uplink formats for a LoRaWAN sensor node that reports temperature, humidity, battery, door state and an alarm code: standard CayenneLPP (17 bytes, self-describing) and a compact 5-byte frame designed here. Each format is implemented three times, in Python (the reference and the test driver), in C for the ESP32 (integer-only, host-testable) and in JavaScript as a payload formatter for The Things Stack or ChirpStack, and the tests prove the three agree byte for byte. This repo shows how the bytes of an uplink are chosen and what they cost in airtime.",
+  "chapters": 0
+ },
  "mqtt-to-sqlite-collector": {
   "url": "https://github.com/Mariam-zeqred/mqtt-to-sqlite-collector",
   "description": "",
@@ -241,4 +252,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-11-10";
+window.REPOS_UPDATED = "2026-11-13";

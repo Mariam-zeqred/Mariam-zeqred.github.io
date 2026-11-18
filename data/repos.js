@@ -106,7 +106,7 @@ window.REPOS = {
   "pushedAt": "2026-10-22",
   "createdAt": "2026-10-20",
   "stars": 0,
-  "intro": "A pytest harness for Firebase Realtime Database security rules. It loads a rules.json and a folder of scenario files (\"the device writes its own node\", \"an anonymous client reads everything\", …) and says allow or deny for each one, either with the official Firebase Database emulator when firebase-tools and Java are installed, or with a small, documented interpreter of the common rules subset that runs anywhere. The repo ships a hardened ruleset for an IoT fleet layout, 39 scenarios, and tests that prove the ruleset closes the holes of an open database.",
+  "intro": "",
   "chapters": 0
  },
  "sensor-fusion-kalman-1d": {
@@ -263,4 +263,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-11-16";
+window.REPOS_UPDATED = "2026-11-18";

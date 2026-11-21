@@ -85,8 +85,8 @@ window.CONTENT = {
         image: "incubator-unit",
         imageAlt: "The queen-bee incubator unit: a white steel cabinet with an LCD control head and a window showing the queen-cell rack",
         summary: [
-          "IoT incubator controller for rearing honey-bee queens. An ESP32 running five FreeRTOS tasks holds the brood chamber at its target with on/off hysteresis control, an OFF-anticipation term and a heater duty-cycle limit, tuned from a 24-hour thermal test campaign.",
-          "An independent 10 Hz safety task enforces a latched 40 °C thermal cutoff, sensor-failure and stale-reading detection, a maximum heater-on time and a door-open actuator cutoff. Every reading is logged to an SD card and to Firebase; firmware updates arrive over the air with a SHA-256 check.",
+          "IoT incubator controller for rearing honey-bee queens, a commercial product of Lotus Power (not yet launched). An ESP32 running FreeRTOS holds the brood chamber at its target with predictive on/off heater control, tuned from thermal test campaigns.",
+          "An independent safety task can always overrule the controller: thermal cutoff, sensor-failure detection, heater-runtime limits and a door-open cutoff. Readings are logged to an SD card and the cloud, and firmware updates arrive over the air. The source is proprietary; the repository is a project overview.",
           "Two Flutter apps: one for the beekeeper (provisioning, live dashboard, history, target temperature; English and Arabic) and one for the engineering team (alarm bursts, device log, OTA push, remote resume)."
         ],
         tags: ["ESP32", "FreeRTOS", "Arduino C++", "Firebase", "Flutter", "OTA", "SD logging"],
@@ -133,16 +133,7 @@ window.CONTENT = {
       },
 
       /* ---- scheduled repositories: hidden until publicFrom (checked client-side) ---- */
-      {
-        name: "incubator-telemetry-analysis",
-        title: "Incubator telemetry analysis",
-        repo: "https://github.com/Mariam-zeqred/incubator-telemetry-analysis",
-        image: "telemetry-timeline.png", imageAlt: "Chamber, ambient and setpoint over one day of real incubator telemetry, heater-on periods shaded",
-        publicFrom: "2026-10-20",
-        summary: ["Analysis of real incubator telemetry: thermal model fit and anomaly detectors."],
-        tags: ["Python", "Data analysis", "Anomaly detection"],
-        simulation: { label: "Thermal simulation", href: "sim/incubator.html" }
-      },
+
       {
         name: "iot-system-design-handbook",
         title: "IoT system design handbook",
@@ -242,16 +233,6 @@ window.CONTENT = {
         publicFrom: "2026-10-31",
         summary: ["Indoor localisation from Wi-Fi signal strength."],
         tags: ["Wi-Fi", "Localisation"]
-      },
-      {
-        name: "incubator-thermal-control-sim",
-        title: "Incubator thermal-control simulation",
-        repo: "https://github.com/Mariam-zeqred/incubator-thermal-control-sim",
-        image: "thermal-sim-cold-start.png", imageAlt: "Four heater controllers compared on the fitted plant during a cold start",
-        publicFrom: "2026-11-01",
-        summary: ["Simulation of the incubator's heating with fitted thermal models and a comparison of heater controllers."],
-        tags: ["Python", "Control", "Simulation"],
-        simulation: { label: "Thermal simulation", href: "sim/incubator.html" }
       }
     ]
   },
@@ -264,7 +245,7 @@ window.CONTENT = {
         title: "Queen-bee incubator: thermal control",
         href: "sim/incubator.html",
         image: "incubator-unit",
-        text: "The chamber model with the parameters fitted on one real day of telemetry, and the firmware's on/off controller with OFF-anticipation next to a plain thermostat and a PID. Open the door, inject a sensor fault, watch the 40 °C safety latch."
+        text: "An illustrative model of a heated cabinet with thermal lag: an anticipating on/off controller next to a plain thermostat and a PID. Open the door, inject a sensor fault, watch the 40 °C safety latch."
       },
       {
         title: "Poultry house: climate controller",

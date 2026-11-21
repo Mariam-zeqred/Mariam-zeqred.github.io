@@ -1,14 +1,14 @@
 /* Queen-bee incubator thermal simulation.
-   Ported to JavaScript from incubator-thermal-control-sim (Python): the two thermal plants
-   fitted on one real day of telemetry (2026-10-03) and the heater controllers, plus the
-   firmware's interlock (door open -> heater off; 40 °C latched cutoff). 1 s time step. */
+   Illustrative model: two generic thermal plants with round-number parameters of the same
+   order as a small heated cabinet, three textbook heater controllers and a safety interlock
+   (door open -> heater off; 40 °C latched cutoff). 1 s time step. Not the product firmware. */
 (function () {
   "use strict";
 
-  // ---------------- fitted parameters (data/model_params.json of the analysis repo) ----------------
+  // ---------------- illustrative plant parameters (round numbers, not measured values) ----------------
   var FIT = {
-    firstOrder: { a: 0.5539, b: 0.0101, deadTimeS: 210 },      // RMSE 0.29 °C
-    heaterLag: { a: 0.5908, tauH: 4.9175, b: 0.0111 }          // RMSE 0.16 °C, the better model
+    firstOrder: { a: 0.5, b: 0.01, deadTimeS: 180 },
+    heaterLag: { a: 0.6, tauH: 5, b: 0.01 }
   };
   var CUTOFF_C = 40.0, CUTOFF_REARM_C = 0.5, SENSOR_STEP = 0.01, DOOR_LOSS_GAIN = 10;
   var SENSOR_STALE_S = 10; // safety task: heater off when no valid reading for this long (simplified)
@@ -46,20 +46,20 @@
     return this.on;
   };
 
-  // Re-implementation of Control.cpp of the queen-bee-incubator firmware (constants from Config.h,
-  // FW 1.1.x): band 0.4 °C, OFF-anticipation 0.1 °C, coast lead 200 s, 30 s minimum OFF,
-  // 600 s maximum continuous ON followed by a 60 s rest.
-  function FirmwareHysteresis(o) {
+  // Textbook anticipating thermostat: switch on/off on a projected temperature (reading plus
+  // recent rate of rise times a lead time), with a minimum OFF time and a duty-cycle rest.
+  // Illustrative defaults only.
+  function AnticipatingHysteresis(o) {
     this.band = o.band; this.anticipation = o.anticipation; this.coastLead = o.coastLead;
-    this.minOff = 30; this.dutyOn = 600; this.dutyRest = 60; this.window = 60; this.minSpan = 20; this.minGap = 0.05;
-    this.name = "On/off with OFF-anticipation (firmware)"; this.reset();
+    this.minOff = 60; this.dutyOn = 900; this.dutyRest = 60; this.window = 60; this.minSpan = 20; this.minGap = 0.05;
+    this.name = "On/off with anticipation"; this.reset();
   }
-  FirmwareHysteresis.prototype.reset = function () {
+  AnticipatingHysteresis.prototype.reset = function () {
     this.buf = []; this.logicalOn = false; this.offAt = null; this.onSince = null; this.resting = false; this.restStart = 0;
     this.lastRate = 0; this.lastProjected = 0;
   };
-  FirmwareHysteresis.prototype.lockout = function () { this.logicalOn = false; this.resting = false; this.onSince = null; };
-  FirmwareHysteresis.prototype.decide = function (t, temp, target) {
+  AnticipatingHysteresis.prototype.lockout = function () { this.logicalOn = false; this.resting = false; this.onSince = null; };
+  AnticipatingHysteresis.prototype.decide = function (t, temp, target) {
     var lo = target - this.band / 2, hi = target + this.band / 2 - this.anticipation;
     if (hi < lo + this.minGap) hi = lo + this.minGap;
     // rate of rise over the window, zero until minSpan samples, never negative
@@ -82,7 +82,7 @@
     return desired;
   };
 
-  // PI tuned with Skogestad's SIMC rules on the first-order fit (kp 0.258 /°C, Ti 28 min), conditional
+  // PI tuned with Skogestad's SIMC rules on the first-order plant, conditional
   // integration anti-windup, output time-proportioned over a 120 s window with a 10 s minimum pulse.
   function PIDRelay() {
     var k = FIT.firstOrder.a / FIT.firstOrder.b, tau = 1 / FIT.firstOrder.b, theta = FIT.firstOrder.deadTimeS / 60;
@@ -107,7 +107,7 @@
   };
 
   function makeController(kind, o) {
-    if (kind === "firmware") return new FirmwareHysteresis(o);
+    if (kind === "anticip") return new AnticipatingHysteresis(o);
     if (kind === "plain") return new PlainHysteresis(o);
     return new PIDRelay();
   }
@@ -165,7 +165,7 @@
   }
   function liveParams() { // sliders that may change mid-run without a reset
     units.forEach(function (u) {
-      if (u.ctl instanceof FirmwareHysteresis) { u.ctl.band = o.band; u.ctl.anticipation = o.anticipation; u.ctl.coastLead = o.coastLead; }
+      if (u.ctl instanceof AnticipatingHysteresis) { u.ctl.band = o.band; u.ctl.anticipation = o.anticipation; u.ctl.coastLead = o.coastLead; }
       if (u.ctl instanceof PlainHysteresis) u.ctl.band = o.band;
       u.plant.a = (o.plant === "firstOrder" ? FIT.firstOrder.a : FIT.heaterLag.a) * o.powerScale;
     });

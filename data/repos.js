@@ -149,17 +149,6 @@ window.REPOS = {
   "intro": "Indoor localisation by Wi-Fi fingerprinting on the public UJIIndoorLoc dataset: a phone records the signal strength (RSSI) of every access point it can hear, and a model maps that vector to a position, floor and building. This repo shows how far two standard methods, weighted k-nearest neighbours and a small multilayer perceptron, get on the dataset's official train/validation split, in metres, and why the error is what it is. Everything below is produced by make all.",
   "chapters": 0
  },
- "incubator-thermal-control-sim": {
-  "url": "https://github.com/Mariam-zeqred/incubator-thermal-control-sim",
-  "description": "",
-  "topics": [],
-  "language": "Python",
-  "pushedAt": "2026-10-16",
-  "createdAt": "2026-10-10",
-  "stars": 0,
-  "intro": "Simulation of a queen-bee incubator's heating as a first-order and a second-order thermal model, with the parameters that incubator-telemetry-analysis fitted on one real day of telemetry, and a comparison of four heater controllers on the same relay: the on/off logic of the real queen-bee-incubator firmware (hysteresis with OFF-anticipation, a coast-lead prediction and a duty-cycle limit), a plain thermostat, a PID quantised to relay pulses, and a model-predictive sketch. Every number below is written by scripts/makefigures.py into figures/results.json; make check regenerates all of it.",
-  "chapters": 0
- },
  "lora-link-budget": {
   "url": "https://github.com/Mariam-zeqred/lora-link-budget",
   "description": "",
@@ -169,17 +158,6 @@ window.REPOS = {
   "createdAt": "2026-10-10",
   "stars": 0,
   "intro": "A LoRa / LoRaWAN planning calculator: link budget and maximum range (free space, log-distance and Okumura-Hata path loss), receiver sensitivity per spreading factor, time on air per payload size, EU868 duty-cycle and US915 dwell-time checks, and a battery-life estimate for a sleep-and-transmit sensor node. One Python package drives both a CLI and a Streamlit page. This repo shows the arithmetic behind \"how far will it reach and how long will the battery last\" for a farm-scale sensor network, with every formula and assumption written down.",
-  "chapters": 0
- },
- "incubator-telemetry-analysis": {
-  "url": "https://github.com/Mariam-zeqred/incubator-telemetry-analysis",
-  "description": "",
-  "topics": [],
-  "language": "Python",
-  "pushedAt": "2026-10-15",
-  "createdAt": "2026-10-10",
-  "stars": 0,
-  "intro": "Analysis of real telemetry from one queen-bee incubator (the device whose firmware and apps are in queen-bee-incubator). This repo turns a day of 15-second readings into heater statistics, two fitted thermal models whose parameters drive a control-simulation repo, and a scored comparison of four anomaly detectors on injected faults. Every number below is produced by scripts/makefigures.py and stored in figures/results.json; the model hand-over is figures/modelparams.json.",
   "chapters": 0
  },
  "tinyml-esp32-anomaly": {
@@ -259,4 +237,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-11-22";
+window.REPOS_UPDATED = "2026-11-23";

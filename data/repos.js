@@ -5,7 +5,7 @@ window.REPOS = {
   "description": "",
   "topics": [],
   "language": "Python",
-  "pushedAt": "2026-11-24",
+  "pushedAt": "2026-11-25",
   "createdAt": "2026-10-10",
   "stars": 0,
   "intro": "This repo shows a complete device-to-cloud telemetry pipeline for the queen-bee incubator as infrastructure as code (AWS CDK, Python): MQTT with per-device X.509 certificates into IoT Core, a rule into a validating Lambda, a hot store in DynamoDB with a 30-day TTL, a cold store of Parquet files in S3 queried with Athena, a scheduled stale-device check (plus per-device heartbeat alarms for small fleets), and a small status API with a static dashboard. It uses the exact record format the incubator firmware already sends, so it is a drop-in cloud side for the existing device.",
@@ -16,10 +16,43 @@ window.REPOS = {
   "description": "",
   "topics": [],
   "language": "C++",
-  "pushedAt": "2026-11-24",
+  "pushedAt": "2026-11-25",
   "createdAt": "2026-10-10",
   "stars": 0,
   "intro": "A tiny autoencoder (1 699 weights, 6 560-byte int8 TensorFlow Lite model) that scores 8-minute temperature windows from a queen-bee incubator and flags the ones it cannot reconstruct. It is trained on one real day of telemetry from the incubator-telemetry-analysis repo, exported for TensorFlow Lite Micro, and shipped with an ESP32 sketch plus a host-side test that replays recorded windows through the same C code the board runs. Faults are injected into the real trace to measure what it detects; the limits of one device, one day are stated below.",
+  "chapters": 0
+ },
+ "mqtt-to-sqlite-collector": {
+  "url": "https://github.com/Mariam-zeqred/mqtt-to-sqlite-collector",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-11-25",
+  "createdAt": "2026-10-20",
+  "stars": 0,
+  "intro": "A small Python service that subscribes to the MQTT topics published by esp32-mqtt-sensor-node, validates every message with pydantic, stores it in SQLite (WAL mode), rolls old raw rows up into hourly aggregates, and serves the data over a tiny FastAPI read API. A Docker Compose file adds Mosquitto and Grafana with a provisioned dashboard. The service itself is about 600 lines of Python (765 with comments; tests and tools are extra) and runs on a Raspberry Pi or a small VPS; no time-series database is needed for a farm's worth of nodes.",
+  "chapters": 0
+ },
+ "firebase-rtdb-rules-tester": {
+  "url": "https://github.com/Mariam-zeqred/firebase-rtdb-rules-tester",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-11-25",
+  "createdAt": "2026-10-20",
+  "stars": 0,
+  "intro": "A pytest harness for Firebase Realtime Database security rules. It loads a rules.json and a folder of scenario files (\"the device writes its own node\", \"an anonymous client reads everything\", …) and says allow or deny for each one, either with the official Firebase Database emulator when firebase-tools and Java are installed, or with a small, documented interpreter of the common rules subset that runs anywhere. The repo ships a hardened ruleset for an IoT fleet layout, 39 scenarios, and tests that prove the ruleset closes the holes of an open database.",
+  "chapters": 0
+ },
+ "lorawan-payload-codec": {
+  "url": "https://github.com/Mariam-zeqred/lorawan-payload-codec",
+  "description": "",
+  "topics": [],
+  "language": "Python",
+  "pushedAt": "2026-11-25",
+  "createdAt": "2026-10-20",
+  "stars": 0,
+  "intro": "Two uplink formats for a LoRaWAN sensor node that reports temperature, humidity, battery, door state and an alarm code: standard CayenneLPP (17 bytes, self-describing) and a compact 5-byte frame designed here. Each format is implemented three times, in Python (the reference and the test driver), in C for the ESP32 (integer-only, host-testable) and in JavaScript as a payload formatter for The Things Stack or ChirpStack, and the tests prove the three agree byte for byte. This repo shows how the bytes of an uplink are chosen and what they cost in airtime.",
   "chapters": 0
  },
  "sensor-fusion-kalman-1d": {
@@ -33,28 +66,6 @@ window.REPOS = {
   "intro": "A one-dimensional Kalman filter that turns a queen-bee incubator's three signals, the chamber SHT31, the ambient SHT31 and the heater relay, into one smoothed chamber-temperature estimate with an uncertainty. It runs on a real day of 15-second telemetry copied from the incubator-telemetry-analysis repository (private since 2026-11-21) and is compared with the raw reading and a moving average, including what each does when the chamber sensor drops out for ten minutes. Every number below is in figures/results.json, written by python -m kalman1d.",
   "chapters": 0
  },
- "mqtt-to-sqlite-collector": {
-  "url": "https://github.com/Mariam-zeqred/mqtt-to-sqlite-collector",
-  "description": "",
-  "topics": [],
-  "language": "Python",
-  "pushedAt": "2026-11-24",
-  "createdAt": "2026-10-20",
-  "stars": 0,
-  "intro": "A small Python service that subscribes to the MQTT topics published by esp32-mqtt-sensor-node, validates every message with pydantic, stores it in SQLite (WAL mode), rolls old raw rows up into hourly aggregates, and serves the data over a tiny FastAPI read API. A Docker Compose file adds Mosquitto and Grafana with a provisioned dashboard. The service itself is about 600 lines of Python (765 with comments; tests and tools are extra) and runs on a Raspberry Pi or a small VPS; no time-series database is needed for a farm's worth of nodes.",
-  "chapters": 0
- },
- "lorawan-payload-codec": {
-  "url": "https://github.com/Mariam-zeqred/lorawan-payload-codec",
-  "description": "",
-  "topics": [],
-  "language": "Python",
-  "pushedAt": "2026-11-24",
-  "createdAt": "2026-10-20",
-  "stars": 0,
-  "intro": "Two uplink formats for a LoRaWAN sensor node that reports temperature, humidity, battery, door state and an alarm code: standard CayenneLPP (17 bytes, self-describing) and a compact 5-byte frame designed here. Each format is implemented three times, in Python (the reference and the test driver), in C for the ESP32 (integer-only, host-testable) and in JavaScript as a payload formatter for The Things Stack or ChirpStack, and the tests prove the three agree byte for byte. This repo shows how the bytes of an uplink are chosen and what they cost in airtime.",
-  "chapters": 0
- },
  "iot-system-design-handbook": {
   "url": "https://github.com/Mariam-zeqred/iot-system-design-handbook",
   "description": "",
@@ -65,28 +76,6 @@ window.REPOS = {
   "stars": 0,
   "intro": "A ten-chapter course for people who can code but have never shipped a device-to-cloud system. One running example throughout: a small-farm environmental monitor (sensors → MCU → gateway → cloud → app). Two real, open-source systems appear as asides: the queen-bee-incubator and the smart-poultry-farm controller.",
   "chapters": 10
- },
- "firebase-rtdb-rules-tester": {
-  "url": "https://github.com/Mariam-zeqred/firebase-rtdb-rules-tester",
-  "description": "",
-  "topics": [],
-  "language": "Python",
-  "pushedAt": "2026-11-24",
-  "createdAt": "2026-10-20",
-  "stars": 0,
-  "intro": "A pytest harness for Firebase Realtime Database security rules. It loads a rules.json and a folder of scenario files (\"the device writes its own node\", \"an anonymous client reads everything\", …) and says allow or deny for each one, either with the official Firebase Database emulator when firebase-tools and Java are installed, or with a small, documented interpreter of the common rules subset that runs anywhere. The repo ships a hardened ruleset for an IoT fleet layout, 39 scenarios, and tests that prove the ruleset closes the holes of an open database.",
-  "chapters": 0
- },
- "uniform-edit-by-hana": {
-  "url": "https://github.com/Mariam-zeqred/uniform-edit-by-hana",
-  "description": "Uniform Edit by Hana — custom uniform design studio website (English / Arabic)",
-  "topics": [],
-  "language": "JavaScript",
-  "pushedAt": "2026-11-23",
-  "createdAt": "2026-11-23",
-  "stars": 0,
-  "intro": "",
-  "chapters": 0
  },
  "queen-bee-incubator": {
   "url": "https://github.com/Mariam-zeqred/queen-bee-incubator",
@@ -248,4 +237,4 @@ window.REPOS = {
   "chapters": 0
  }
 };
-window.REPOS_UPDATED = "2026-11-24";
+window.REPOS_UPDATED = "2026-11-25";
